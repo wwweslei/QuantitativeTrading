@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "quantitativetrading"
+version = "0.1.0"
+description = "Quantitative trading Implement a portfolio management system and create investment models"
+authors = ["Weslei Silva Bomfim <www.weslei@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Django = "^4.0.3"
+
+[tool.poetry.dev-dependencies]
+black = "^22.1.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
