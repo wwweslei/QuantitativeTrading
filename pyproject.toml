@@ -7,9 +7,14 @@ authors = ["Weslei Silva Bomfim <www.weslei@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.10"
 Django = "^4.0.3"
+yfinance = "^0.1.70"
+pandas = "^1.4.1"
+django-compressor = "^3.1"
+libsass = "^0.21.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"
+djlint = "^0.7.5"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
