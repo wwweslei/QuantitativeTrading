@@ -1,0 +1,30 @@
+{% load static %}
+{% load compress %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/cf554a4166.js" crossorigin="anonymous"></script>
+        {% compress css inline %}
+            <link rel="stylesheet"
+                  type="text/x-sass"
+                  href="{% static 'core/css/main.scss' %}">
+        {% endcompress %}
+        {% compress js %}
+            <script type="text/javascript" src="{% static 'core/js/main.js' %}"></script>
+        {% endcompress %}
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>
+            Page test
+            <i class="fa-brands fa-github-square"></i> <!-- uses brand style -->
+            <br>
+            fa-github-square
+        </h1>
+    </body>
+</html>
+
+
