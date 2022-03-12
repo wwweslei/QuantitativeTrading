@@ -19,8 +19,9 @@
 
 // 4. Layout-related sections
 @import
-  'layout/header',
-  'layout/footer';
+  'layout/l-header',
+  'layout/l-main',
+  'layout/l-sidebar';
 
 // 5. Components
 @import
@@ -33,3 +34,4 @@
 // 7. Themes
 @import
   'themes/default';
+
