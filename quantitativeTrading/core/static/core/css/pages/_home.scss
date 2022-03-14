@@ -2,6 +2,8 @@
 // This file contains styles that are specific to the home page.
 // -----------------------------------------------------------------------------
 
-h1{
-    color: brown;
-  }
+.l-cards {
+  display: flex;
+  justify-content: space-between;
+  align-content: flex-start;
+}
