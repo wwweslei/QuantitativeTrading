@@ -16,6 +16,7 @@ fontawesomefree = "^6.0.0"
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"
 djlint = "^0.7.5"
+django-debug-toolbar = "^3.2.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

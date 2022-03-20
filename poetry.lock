@@ -110,6 +110,18 @@ rcssmin = "1.1.0"
 rjsmin = "1.2.0"
 
 [[package]]
+name = "django-debug-toolbar"
+version = "3.2.4"
+description = "A configurable set of panels that display various debug information about the current request/response."
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+Django = ">=2.2"
+sqlparse = ">=0.2.0"
+
+[[package]]
 name = "djlint"
 version = "0.7.5"
 description = "HTML Template Linter and Formatter"
@@ -415,7 +427,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "afcc839731fe07846b54b447c4205b8200ebf0ac045e35a82eb5e9921b98307a"
+content-hash = "622d918a8a53edf9886dd03de4e5d998d06fe82575d6c3e814a6d17ea2d257b1"
 
 [metadata.files]
 asgiref = [
@@ -474,6 +486,10 @@ django-appconf = [
 django-compressor = [
     {file = "django_compressor-3.1-py2.py3-none-any.whl", hash = "sha256:89f7ba86777b30672c2f9c7557bf2aff87c5890903c73b1fa3ae38acd143e855"},
     {file = "django_compressor-3.1.tar.gz", hash = "sha256:c4a87bf65f9a534cfaf1c321a000a229c24e50c6d62ba6ab089482db42e819d9"},
+]
+django-debug-toolbar = [
+    {file = "django-debug-toolbar-3.2.4.tar.gz", hash = "sha256:644bbd5c428d3283aa9115722471769cac1bec189edf3a0c855fd8ff870375a9"},
+    {file = "django_debug_toolbar-3.2.4-py3-none-any.whl", hash = "sha256:6b633b6cfee24f232d73569870f19aa86c819d750e7f3e833f2344a9eb4b4409"},
 ]
 djlint = [
     {file = "djlint-0.7.5-py3-none-any.whl", hash = "sha256:b5c68f3ed50fe27dc288dca1ccb8174859239037d1e1e09b41b008712a447ca0"},
