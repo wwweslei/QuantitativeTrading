@@ -12,6 +12,7 @@ pandas = "^1.4.1"
 django-compressor = "^3.1"
 libsass = "^0.21.0"
 fontawesomefree = "^6.0.0"
+django-admin-rangefilter = "^0.8.4"
 
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"
