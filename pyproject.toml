@@ -18,6 +18,8 @@ django-admin-rangefilter = "^0.8.4"
 black = "^22.1.0"
 djlint = "^0.7.5"
 django-debug-toolbar = "^3.2.4"
+django-extensions = "^3.1.5"
+ipython = "^8.1.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
