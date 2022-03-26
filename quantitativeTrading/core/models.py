@@ -60,3 +60,25 @@ class Nasdaq(base, models.Model):
     class Meta:
         db_table = "nasdaq"
         verbose_name_plural = "Nasdaq"
+
+
+class StocksIbov(models.Model):
+    symbol = models.TextField(primary_key=True)
+    name = models.TextField(blank=True, null=True)
+    type = models.TextField(blank=True, null=True)
+    quantity = models.TextField(blank=True, null=True)
+    percentage = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'stocks_ibov'
+        verbose_name_plural = 'Stocks Ibovespa'
+
+class Stocks_br(models.Model):
+    symbol = models.TextField(primary_key=True)
+    name = models.TextField(blank=True, null=True)
+    full_name = models.TextField(blank=True, null=True)
+    isin = models.TextField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'stocks_br'
+        verbose_name_plural = 'Stocks Brazil'
