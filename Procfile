@@ -1,0 +1,1 @@
+web: gunicorn quantitativeTrading.wsgi
