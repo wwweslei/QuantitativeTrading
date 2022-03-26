@@ -1,1 +1,1 @@
-web: gunicorn quantitativeTrading\quantitativeTrading.wsgi
+web: gunicorn quantitativeTrading.quantitativeTrading.wsgi
