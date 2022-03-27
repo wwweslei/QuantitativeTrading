@@ -1,0 +1,32 @@
+{% load static %}
+{% load compress %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" type="image/png" href="{% static '/core/img/favicon_trevo.png' %}">
+        {% compress css inline %}
+            <link rel="stylesheet"
+                  type="text/x-sass"
+                  href="{% static 'core/css/main.scss' %}?{% now "U" %}">
+        {% endcompress %}
+        {% compress js %}
+            <script src="{% static 'core/js/vendors/fontawesome/all.min.js' %}"></script>
+            <script type="text/javascript" src="{% static 'core/js//main.js' %}"></script>
+        {% endcompress %}
+        <title>
+            {% block title %}
+            {% endblock title %}
+        </title>
+    </head>
+    <body>
+        {% block header %}
+        {% endblock header %}
+        {% block sidebar %}
+        {% endblock sidebar %}
+        {% block main %}
+        {% endblock main %}
+    </body>
+</html>
