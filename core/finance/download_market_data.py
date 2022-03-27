@@ -5,10 +5,12 @@ from django.conf import settings
 import os
 import pandas as pd
 import investpy as inv
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 
 os.environ[
     "DJANGO_SETTINGS_MODULE"
-] = "quantitativeTrading.quantitativeTrading.settings"
+] = "quantitativeTrading.settings"
 
 conn = sqlite3.connect(settings.DATABASES["default"]["NAME"])
 tickers = {
@@ -81,4 +83,5 @@ if __name__ == "__main__":
     # save()
     # get_stocks_br()
     # get_fii_br()
-    get_stocks_fii()
+    # get_stocks_fii()
+    run_all()
