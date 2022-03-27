@@ -11,6 +11,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 os.environ[
     "DJANGO_SETTINGS_MODULE"
 ] = "quantitativeTrading.settings"
+print(settings.DATABASES["default"]["NAME"])
 
 conn = sqlite3.connect(settings.DATABASES["default"]["NAME"])
 tickers = {
@@ -84,4 +85,5 @@ if __name__ == "__main__":
     # get_stocks_br()
     # get_fii_br()
     # get_stocks_fii()
-    run_all()
+    # run_all()
+    print(settings.DEBUG)
