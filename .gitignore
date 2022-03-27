@@ -125,6 +125,9 @@ venv.bak/
 .dmypy.json
 dmypy.json
 
+# Vs code
+.vscode/*
+
 # Pyre type checker
 .pyre/
 quantitativeTrading/core/static/core/css/abstracts/README.md

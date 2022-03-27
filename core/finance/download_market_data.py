@@ -26,6 +26,7 @@ def get_stocks_br():
     stocks_br = inv.get_stocks("brazil")
     stocks_br = stocks_br[["symbol", "name", "full_name", "isin"]]
     stocks_br.to_sql("stocks_br", conn, if_exists="replace", index=False)
+    print("updated: get_stocks_br")
 
 
 def get_stocks_ibov():
@@ -34,6 +35,7 @@ def get_stocks_ibov():
     df = html.copy()[["Código", "Ação", "Tipo", "Qtde. Teórica", "Part. (%)"]]
     df.columns = ["symbol", "name", "type", "quantity", "percentage"]
     df.to_sql("stocks_ibov", conn, if_exists="replace", index=False)
+    print("updated: get_stocks_ibov")
 
 
 def get_fii_br():
@@ -43,13 +45,14 @@ def get_fii_br():
     df.columns = ["symbol", "name", "full_name"]
     df["symbol"] = df["symbol"] + "11"
     df.to_sql("fii_br", conn, if_exists="replace", index=False)
+    print("updated: get_fii_br")
 
 def get_stocks_fii():
     url = "https://sistemaswebb3-listados.b3.com.br/indexPage/day/IFIX?language=pt-br"
     html = pd.read_html(url)
     print(html)
     # df.to_sql("stocks_ibov", conn, if_exists="replace", index=False)
-    
+    print("updated: get_stocks_fii")
     
     
 def update(name):
@@ -62,8 +65,16 @@ def update(name):
 def save():
     for name in tickers:
         update(name)
-        print("updated", name)
+        print("updated:", name)
 
+
+def run_all():
+    save()
+    get_stocks_br()
+    get_stocks_ibov()
+    # get_stocks_fii()
+    get_fii_br()
+    
 
 if __name__ == "__main__":
     # get_stocks_ibov()
