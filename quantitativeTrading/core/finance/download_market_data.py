@@ -44,7 +44,14 @@ def get_fii_br():
     df["symbol"] = df["symbol"] + "11"
     df.to_sql("fii_br", conn, if_exists="replace", index=False)
 
-
+def get_stocks_fii():
+    url = "https://sistemaswebb3-listados.b3.com.br/indexPage/day/IFIX?language=pt-br"
+    html = pd.read_html(url)
+    print(html)
+    # df.to_sql("stocks_ibov", conn, if_exists="replace", index=False)
+    
+    
+    
 def update(name):
     data = yf.Ticker(tickers[name])
     df = data.history(period="max")
@@ -62,4 +69,5 @@ if __name__ == "__main__":
     # get_stocks_ibov()
     # save()
     # get_stocks_br()
-    get_fii_br()
+    # get_fii_br()
+    get_stocks_fii()
