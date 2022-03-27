@@ -82,3 +82,11 @@ class Stocks_br(models.Model):
     class Meta:
         db_table = 'stocks_br'
         verbose_name_plural = 'Stocks Brazil'
+        
+class FiiBr(models.Model):
+    symbol = models.TextField(primary_key=True)
+    name = models.TextField(blank=True, null=True)
+    full_name = models.TextField(blank=True, null=True)
+    class Meta:
+        db_table = 'fii_br'
+        verbose_name_plural = 'FII Brazil'
