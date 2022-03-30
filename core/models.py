@@ -3,7 +3,7 @@ from django.db import models
 
 
 class base(models.Model):
-    date = models.DateTimeField(primary_key=True)
+    Date = models.DateTimeField(primary_key=True)
     open = models.FloatField(blank=True, null=True)
     high = models.FloatField(blank=True, null=True)
     low = models.FloatField(blank=True, null=True)

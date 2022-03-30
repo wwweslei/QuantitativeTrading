@@ -1,19 +1,17 @@
-from re import S
 import yfinance as yf
-import sqlite3
-from django.conf import settings
-import os
 import pandas as pd
 import investpy as inv
 import ssl
+from sqlalchemy import create_engine
+from decouple import config
+
 ssl._create_default_https_context = ssl._create_unverified_context
+url = config('DATABASE_URL').replace("postgres://", "postgresql://")
 
-os.environ[
-    "DJANGO_SETTINGS_MODULE"
-] = "quantitativeTrading.settings"
-print(settings.DATABASES["default"]["NAME"])
+print(url)
 
-conn = sqlite3.connect(settings.DATABASES["default"]["NAME"])
+conn = create_engine(url)
+
 tickers = {
     "dollar": "USDBRL=X",
     "ibovespa": "^BVSP",
@@ -50,14 +48,15 @@ def get_fii_br():
     df.to_sql("fii_br", conn, if_exists="replace", index=False)
     print("updated: get_fii_br")
 
+
 def get_stocks_fii():
     url = "https://sistemaswebb3-listados.b3.com.br/indexPage/day/IFIX?language=pt-br"
     html = pd.read_html(url)
     print(html)
-    # df.to_sql("stocks_ibov", conn, if_exists="replace", index=False)
+    # df.to_sql("stocks_ibov", conn, if_exists="replace",flavor='postgresql',  index=False)
     print("updated: get_stocks_fii")
-    
-    
+
+
 def update(name):
     data = yf.Ticker(tickers[name])
     df = data.history(period="max")
@@ -77,7 +76,7 @@ def run_all():
     get_stocks_ibov()
     # get_stocks_fii()
     get_fii_br()
-    
+
 
 if __name__ == "__main__":
     # get_stocks_ibov()
@@ -85,5 +84,4 @@ if __name__ == "__main__":
     # get_stocks_br()
     # get_fii_br()
     # get_stocks_fii()
-    # run_all()
-    print(settings.DEBUG)
+    run_all()

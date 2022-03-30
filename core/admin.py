@@ -16,7 +16,7 @@ from .models import Ibovespa, Dollar, Bitcoin, Smal, SP_500, Xfix, Nasdaq
 @admin.register(Ibovespa)
 class Register(admin.ModelAdmin):
     fields = (
-        "date",
+        "Date",
         "open",
         "close",
         "high",
@@ -26,7 +26,7 @@ class Register(admin.ModelAdmin):
         "stock_splits",
     )
     readonly_fields = fields
-    list_display = ("date", "open", "high", "low", "close", "volume")
-    date_hierarchy = "date"
-    search_fields = ["date"]
-    list_filter = [("date", DateRangeFilter), ("date")]
+    list_display = ("Date", "open", "high", "low", "close", "volume")
+    date_hierarchy = "Date"
+    search_fields = ["Date"]
+    list_filter = [("Date", DateRangeFilter), ("Date")]
