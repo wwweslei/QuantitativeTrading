@@ -12,15 +12,6 @@ print(url)
 
 conn = create_engine(url)
 
-tickers = {
-    "dollar": "USDBRL=X",
-    "ibovespa": "^BVSP",
-    "bitcoin": "BTC-USD",
-    "smal": "SMAL11.SA",
-    "sp_500": "^GSPC",
-    "xfix": "XFIX11.SA",
-    "nasdaq": "^IXIC",
-}
 
 
 def get_stocks_br():
@@ -39,14 +30,14 @@ def get_stocks_ibov():
     print("updated: get_stocks_ibov")
 
 
-def get_fii_br():
+def get_fiis():
     url = "https://www2.bmfbovespa.com.br/Fundos-Listados/FundosListados.aspx?tipoFundo=imobiliario&Idioma=pt-br"
     df = pd.read_html(url, decimal=",", thousands=".")[0][:-1]
     df = df[["Código", "Fundo", "Razão Social"]]
     df.columns = ["symbol", "name", "full_name"]
     df["symbol"] = df["symbol"] + "11"
-    df.to_sql("fii_br", conn, if_exists="replace", index=False)
-    print("updated: get_fii_br")
+    df.to_sql("fiis", conn, if_exists="replace", index=False)
+    print("updated: get_fiis")
 
 
 def get_stocks_fii():
@@ -56,11 +47,21 @@ def get_stocks_fii():
     # df.to_sql("stocks_ibov", conn, if_exists="replace",flavor='postgresql',  index=False)
     print("updated: get_stocks_fii")
 
+tickers = {
+    "dollar": "USDBRL=X",
+    "ibovespa": "^BVSP",
+    "bitcoin": "BTC-USD",
+    "smal": "SMAL11.SA",
+    "sp_500": "^GSPC",
+    "xfix": "XFIX11.SA",
+    "nasdaq": "^IXIC",
+}
 
 def update(name):
     data = yf.Ticker(tickers[name])
     df = data.history(period="max")
     df.columns = df.columns.str.lower()
+    df.index.rename("date", inplace=True)
     df.to_sql(name, conn, if_exists="replace")
 
 
@@ -75,13 +76,13 @@ def run_all():
     get_stocks_br()
     get_stocks_ibov()
     # get_stocks_fii()
-    get_fii_br()
+    get_fiis()
 
 
 if __name__ == "__main__":
     # get_stocks_ibov()
     # save()
     # get_stocks_br()
-    # get_fii_br()
+    # get_fiis()
     # get_stocks_fii()
     run_all()

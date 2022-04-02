@@ -3,7 +3,7 @@ from django.db import models
 
 
 class base(models.Model):
-    Date = models.DateTimeField(primary_key=True)
+    date = models.DateTimeField(primary_key=True)
     open = models.FloatField(blank=True, null=True)
     high = models.FloatField(blank=True, null=True)
     low = models.FloatField(blank=True, null=True)
@@ -83,10 +83,10 @@ class Stocks_br(models.Model):
         db_table = 'stocks_br'
         verbose_name_plural = 'Stocks Brazil'
         
-class FiiBr(models.Model):
+class Fii(models.Model):
     symbol = models.TextField(primary_key=True)
     name = models.TextField(blank=True, null=True)
     full_name = models.TextField(blank=True, null=True)
     class Meta:
-        db_table = 'fii_br'
+        db_table = 'fiis'
         verbose_name_plural = 'FII Brazil'
