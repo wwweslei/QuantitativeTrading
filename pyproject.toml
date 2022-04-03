@@ -23,6 +23,7 @@ bs4 = "^0.0.1"
 python-decouple = "^3.6"
 psycopg2-binary = "^2.9.3"
 SQLAlchemy = "^1.4.32"
+openpyxl = "^3.0.9"
 
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"

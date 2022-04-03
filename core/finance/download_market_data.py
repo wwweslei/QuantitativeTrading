@@ -1,17 +1,12 @@
 import yfinance as yf
 import pandas as pd
 import investpy as inv
-import ssl
 from sqlalchemy import create_engine
 from decouple import config
 
-ssl._create_default_https_context = ssl._create_unverified_context
-url = config('DATABASE_URL').replace("postgres://", "postgresql://")
-
-print(url)
+url = config("DATABASE_URL").replace("postgres://", "postgresql://")
 
 conn = create_engine(url)
-
 
 
 def get_stocks_br():
@@ -47,6 +42,7 @@ def get_stocks_fii():
     # df.to_sql("stocks_ibov", conn, if_exists="replace",flavor='postgresql',  index=False)
     print("updated: get_stocks_fii")
 
+
 tickers = {
     "dollar": "USDBRL=X",
     "ibovespa": "^BVSP",
@@ -56,6 +52,7 @@ tickers = {
     "xfix": "XFIX11.SA",
     "nasdaq": "^IXIC",
 }
+
 
 def update(name):
     data = yf.Ticker(tickers[name])

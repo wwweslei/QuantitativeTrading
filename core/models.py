@@ -1,4 +1,3 @@
-from tabnanny import verbose
 from django.db import models
 
 
@@ -70,8 +69,9 @@ class StocksIbov(models.Model):
     percentage = models.FloatField(blank=True, null=True)
 
     class Meta:
-        db_table = 'stocks_ibov'
-        verbose_name_plural = 'Stocks Ibovespa'
+        db_table = "stocks_ibov"
+        verbose_name_plural = "Stocks Ibovespa"
+
 
 class Stocks_br(models.Model):
     symbol = models.TextField(primary_key=True)
@@ -80,13 +80,15 @@ class Stocks_br(models.Model):
     isin = models.TextField(blank=True, null=True)
 
     class Meta:
-        db_table = 'stocks_br'
-        verbose_name_plural = 'Stocks Brazil'
-        
+        db_table = "stocks_br"
+        verbose_name_plural = "Stocks Brazil"
+
+
 class Fii(models.Model):
     symbol = models.TextField(primary_key=True)
     name = models.TextField(blank=True, null=True)
     full_name = models.TextField(blank=True, null=True)
+
     class Meta:
-        db_table = 'fiis'
-        verbose_name_plural = 'FII Brazil'
+        db_table = "fiis"
+        verbose_name_plural = "FII Brazil"
