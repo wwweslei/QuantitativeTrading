@@ -2,7 +2,12 @@ import os
 import pandas as pd
 import numpy as np
 from django.conf import settings
-from tomlkit import document
+from sqlalchemy import create_engine
+from decouple import config
+
+url = config("DATABASE_URL").replace("postgres://", "postgresql://")
+
+conn = create_engine(url)
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "quantitativeTrading.settings")
 EXCEL_FILE_NAME = "negociosNUinvest.xlsx"
@@ -153,6 +158,19 @@ def get_portfolio() -> pd.DataFrame:
         )
     return full_portfolio
 
+def save_portfolio(portfolio: pd.DataFrame):
+    """
+    Save portfolio in database
 
+    Args:
+        portfolio (pd.DataFrame):
+        portfolio to save
+    """
+    portfolio["user"] = "1"
+    portfolio.columns = ["symbol", "value", "total_value", "qtd", "user_id"]
+    portfolio.index.rename("date", inplace=True)
+    portfolio.to_sql("portfolio", conn, if_exists="replace")
+    
+    
 if __name__ == "__main__":
-    print(get_portfolio())
+    print(save_portfolio(get_portfolio()))

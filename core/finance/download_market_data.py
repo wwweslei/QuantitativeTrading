@@ -4,8 +4,13 @@ import investpy as inv
 from sqlalchemy import create_engine
 from decouple import config
 
-url = config("DATABASE_URL").replace("postgres://", "postgresql://")
 
+ENVIRONMENT = config("ENVIRONMENT")
+
+if ENVIRONMENT == "development":
+    url = config("DATABASE_URL").replace("postgres://", "postgresql://")
+else:
+    url = config("DATABASE_URL_HEROKU").replace("postgres://", "postgresql://")
 conn = create_engine(url)
 
 
@@ -60,10 +65,15 @@ def update(name):
     df.columns = df.columns.str.lower()
     df.index.rename("date", inplace=True)
     df = df.iloc[::-1]
-    df.to_sql(name, conn, if_exists="replace")
+    if ENVIRONMENT == "development":
+        df.to_sql(name, conn, if_exists="replace")
+    else:
+        df = df.tail(10)
+        df.to_sql(name, conn, if_exists="replace")
 
 
 def save():
+    print(f"saving in environment: {ENVIRONMENT}")
     for name in tickers:
         update(name)
         print("updated:", name)

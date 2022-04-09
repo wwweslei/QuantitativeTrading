@@ -5,7 +5,7 @@ from rangefilter.filters import DateRangeFilter
 
 # Register your models here.
 
-from .models import Ibovespa, Dollar, Bitcoin, Smal, SP_500, Xfix, Nasdaq
+from .models import Ibovespa, Dollar, Bitcoin, Smal, SP_500, Xfix, Nasdaq, Portfolio
 
 @admin.register(Bitcoin)
 @admin.register(Xfix)
@@ -30,3 +30,7 @@ class Register(admin.ModelAdmin):
     date_hierarchy = "date"
     search_fields = ["date"]
     list_filter = [("date", DateRangeFilter), ("date")]
+    
+@admin.register(Portfolio)
+class WalletAdmin(admin.ModelAdmin):
+    pass
