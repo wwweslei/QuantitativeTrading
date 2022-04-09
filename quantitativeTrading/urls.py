@@ -17,6 +17,12 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 
+
+admin.site.site_header = "Quantitative Trading Admin"
+admin.site.site_title = "Quantitative Trading"
+admin.site.index_title = "Welcome to Quantitative Trading Researcher Portal"
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),

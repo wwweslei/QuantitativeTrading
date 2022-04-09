@@ -7,4 +7,4 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         run_all()
-        self.stdout.write("Update")
+        self.stdout.write("Update completed")

@@ -59,6 +59,7 @@ def update(name):
     df = data.history(period="max")
     df.columns = df.columns.str.lower()
     df.index.rename("date", inplace=True)
+    df = df.iloc[::-1]
     df.to_sql(name, conn, if_exists="replace")
 
 

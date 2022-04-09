@@ -71,7 +71,8 @@ class StocksIbov(models.Model):
     class Meta:
         db_table = "stocks_ibov"
         verbose_name_plural = "Stocks Ibovespa"
-
+    def __str__(self):
+        return self.name
 
 class Stocks_br(models.Model):
     symbol = models.TextField(primary_key=True)
@@ -83,6 +84,9 @@ class Stocks_br(models.Model):
         db_table = "stocks_br"
         verbose_name_plural = "Stocks Brazil"
 
+    def __str__(self):
+        return self.name
+
 
 class Fii(models.Model):
     symbol = models.TextField(primary_key=True)
@@ -92,3 +96,6 @@ class Fii(models.Model):
     class Meta:
         db_table = "fiis"
         verbose_name_plural = "FII Brazil"
+
+    def __str__(self):
+        return self.name
