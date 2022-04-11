@@ -1,7 +1,6 @@
 import numpy
 import pandas as pd
 import sys
-import os
 
 from core.finance import account
 from django.test import TestCase

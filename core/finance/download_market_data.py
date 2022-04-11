@@ -48,6 +48,12 @@ def get_stocks_fii():
     print("updated: get_stocks_fii")
 
 
+def get_stocks_overview():
+    df = inv.get_stocks_overview("brazil", n_results=400)
+    df["change_percentage"] = df["change_percentage"].str.replace("%", "").astype(float)
+    df.to_sql("stocks_overview", conn, if_exists="replace", index=False)
+
+
 tickers = {
     "dollar": "USDBRL=X",
     "ibovespa": "^BVSP",
@@ -68,7 +74,7 @@ def update(name):
     if ENVIRONMENT == "development":
         df.to_sql(name, conn, if_exists="replace")
     else:
-        df = df.tail(10)
+        df = df.head(2)
         df.to_sql(name, conn, if_exists="replace")
 
 
@@ -93,4 +99,5 @@ if __name__ == "__main__":
     # get_stocks_br()
     # get_fiis()
     # get_stocks_fii()
+    get_stocks_overview()
     run_all()

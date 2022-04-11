@@ -5,9 +5,14 @@ from django.conf import settings
 from sqlalchemy import create_engine
 from decouple import config
 
-url = config("DATABASE_URL").replace("postgres://", "postgresql://")
+ENVIRONMENT = 'config("ENVIRONMENT")'
 
+if ENVIRONMENT == "development":
+    url = config("DATABASE_URL")
+else:
+    url = config("DATABASE_URL_HEROKU")
 conn = create_engine(url)
+
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "quantitativeTrading.settings")
 EXCEL_FILE_NAME = "negociosNUinvest.xlsx"
@@ -173,4 +178,4 @@ def save_portfolio(portfolio: pd.DataFrame):
     
     
 if __name__ == "__main__":
-    print(save_portfolio(get_portfolio()))
+    save_portfolio(get_portfolio())
