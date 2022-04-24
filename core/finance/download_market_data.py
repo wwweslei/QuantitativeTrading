@@ -1,3 +1,4 @@
+from threading import Thread
 import yfinance as yf
 import pandas as pd
 import investpy as inv
@@ -14,14 +15,16 @@ else:
 conn = create_engine(url)
 
 
-def get_stocks_br():
+def get_stocks_br() -> None:
+    """get Dataframe containing all Ibovespa assets and save in database."""
     stocks_br = inv.get_stocks("brazil")
     stocks_br = stocks_br[["symbol", "name", "full_name", "isin"]]
     stocks_br.to_sql("stocks_br", conn, if_exists="replace", index=False)
     print("updated: get_stocks_br")
 
 
-def get_stocks_ibov():
+def get_stocks_ibov() -> None:
+    """get all the assets contained in the ibovespa index and save it in the database."""
     url = "http://bvmf.bmfbovespa.com.br/indices/ResumoCarteiraTeorica.aspx?Indice=IBOV&amp;idioma=pt-br"
     html = pd.read_html(url, decimal=",", thousands=".")[0][:-1]
     df = html.copy()[["Código", "Ação", "Tipo", "Qtde. Teórica", "Part. (%)"]]
@@ -30,7 +33,8 @@ def get_stocks_ibov():
     print("updated: get_stocks_ibov")
 
 
-def get_fiis():
+def get_fiis() -> None:
+    """get all the assets contained in the IFIX index and save it in the database."""
     url = "https://www2.bmfbovespa.com.br/Fundos-Listados/FundosListados.aspx?tipoFundo=imobiliario&Idioma=pt-br"
     df = pd.read_html(url, decimal=",", thousands=".")[0][:-1]
     df = df[["Código", "Fundo", "Razão Social"]]
@@ -40,15 +44,8 @@ def get_fiis():
     print("updated: get_fiis")
 
 
-def get_stocks_fii():
-    url = "https://sistemaswebb3-listados.b3.com.br/indexPage/day/IFIX?language=pt-br"
-    html = pd.read_html(url)
-    print(html)
-    # df.to_sql("stocks_ibov", conn, if_exists="replace",flavor='postgresql',  index=False)
-    print("updated: get_stocks_fii")
-
-
-def get_stocks_overview():
+def get_stocks_overview() -> None:
+    """get Dataframe containing overview all Ibovespa assets and save in database."""
     df = inv.get_stocks_overview("brazil", n_results=400)
     df["change_percentage"] = df["change_percentage"].str.replace("%", "").astype(float)
     df.to_sql("stocks_overview", conn, if_exists="replace", index=False)
@@ -65,7 +62,14 @@ tickers = {
 }
 
 
-def update(name):
+def update(name: dict[str, str]) -> None:
+    """update the database with the data from yfinance.
+
+    Args:
+        name (dict[str, str]): dictionary containing
+        key: name of the ticker
+        value : cod of the ticker
+    """
     data = yf.Ticker(tickers[name])
     df = data.history(period="max")
     df.columns = df.columns.str.lower()
@@ -78,26 +82,22 @@ def update(name):
         df.to_sql(name, conn, if_exists="replace")
 
 
-def save():
+def save() -> None:
+    """save the data the dictionary in the database."""
     print(f"saving in environment: {ENVIRONMENT}")
     for name in tickers:
-        update(name)
+        Thread(target=update, args=(name,)).start()
         print("updated:", name)
 
 
-def run_all():
-    save()
-    get_stocks_br()
-    get_stocks_ibov()
-    # get_stocks_fii()
-    get_fiis()
+def run_all() -> None:
+    """run all the functions."""
+    Thread(target=get_stocks_br).start()
+    Thread(target=get_stocks_ibov).start()
+    Thread(target=get_fiis).start()
+    Thread(target=get_stocks_overview).start()
+    Thread(target=save).start()
 
 
 if __name__ == "__main__":
-    # get_stocks_ibov()
-    # save()
-    # get_stocks_br()
-    # get_fiis()
-    # get_stocks_fii()
-    get_stocks_overview()
     run_all()
