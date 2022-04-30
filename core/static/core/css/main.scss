@@ -8,14 +8,15 @@
 
 // 2. Vendors
 @import
-  'vendors/normalize';
+  'vendors/bootstrap/css/bootstrap.min';
 
 // 3. Base stuff
 @import
   'base/base',
   'base/fonts',
   'base/typography',
-  'base/helpers';
+  'base/helpers',
+  'base/normalize';
 
 // 4. Layout-related sections
 @import

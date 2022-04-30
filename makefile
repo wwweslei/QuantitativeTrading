@@ -25,3 +25,6 @@ test:
 
 shell:
 	poetry run python manage.py shell_plus
+	
+note:
+	poetry run python manage.py shell_plus --notebook
