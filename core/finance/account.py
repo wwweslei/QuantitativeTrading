@@ -1,9 +1,11 @@
 import os
-import pandas as pd
+
 import numpy as np
+import pandas as pd
+import yfinance as yf
+from decouple import config
 from django.conf import settings
 from sqlalchemy import create_engine
-from decouple import config
 
 ENVIRONMENT = 'config("ENVIRONMENT")'
 
@@ -163,6 +165,7 @@ def get_portfolio() -> pd.DataFrame:
         )
     return full_portfolio
 
+
 def save_portfolio(portfolio: pd.DataFrame):
     """
     Save portfolio in database
@@ -175,7 +178,65 @@ def save_portfolio(portfolio: pd.DataFrame):
     portfolio.columns = ["symbol", "value", "total_value", "qtd", "user_id"]
     portfolio.index.rename("date", inplace=True)
     portfolio.to_sql("portfolio", conn, if_exists="replace")
-    
-    
+
+
+def download_dividend(ticket: str, data: pd.Timestamp) -> float:
+    ticker = yf.Ticker(ticket)
+    dividends = ticker.dividends
+    return dividends[data:].sum()
+
+
+def portfolio_dividends(portfolio: pd.DataFrame) -> list:
+    dividends = []
+    for ticker in portfolio:
+        dividends.append(download_dividend(ticker["Ticket"], ticker.index))
+    return dividends
+
+
+def get_portfolio2():
+    portfolio = get_portfolio()
+    prices = yf.download(tickers=list(portfolio["Ticket"] + ".SA"), threads=True)
+    prices = prices["Adj Close"].tail(2)
+    prices = prices.transpose()
+    prices.columns = ["Last Value", "Value"]
+    prices["Qtd"] = list(portfolio["Qtd"])
+    prices["Average Value"] = portfolio["Average Value"].tolist()
+    prices["Financial Buy"] = portfolio["Financial Buy"].tolist()
+    prices["Last Value"] = prices["Last Value"].round(2)
+    prices["Value"] = prices["Value"].round(2)
+    prices["Total"] = (prices["Qtd"] * prices["Value"]).round(2)
+    prices["Return Day"] = (
+        (prices["Value"] - prices["Last Value"]) * prices["Qtd"]
+    ).round(2)
+    prices["Return"] = prices["Total"] - prices["Financial Buy"]
+    prices["Pct Day"] = (((prices["Value"] / prices["Last Value"]) - 1) * 100).round(2)
+    prices["Pct"] = (((prices["Total"] / prices["Financial Buy"]) - 1) * 100).round(2)
+    prices.index = prices.index.str.rstrip(".SA")
+    prices = prices[
+        [
+            "Qtd",
+            "Return Day",
+            "Pct Day",
+            "Average Value",
+            "Financial Buy",
+            "Last Value",
+            "Value",
+            "Total",
+            "Return",
+            "Pct",
+        ]
+    ]
+    return prices
+
+
+def print_portfolio(prices):
+    print("[", 45 * "*", "PORTFOLIO", 45 * "*", "]")
+    print(prices)
+    print("Return Day ==> ", prices["Return Day"].sum().round(2), end="  ")
+    print("\tReturn ==> ", prices["Return"].sum().round(2))
+    print("[", 45 * "*", "PORTFOLIO", 45 * "*", "]")
+
+
 if __name__ == "__main__":
-    save_portfolio(get_portfolio())
+    # save_portfolio(get_portfolio())
+    print_portfolio(get_portfolio2())
