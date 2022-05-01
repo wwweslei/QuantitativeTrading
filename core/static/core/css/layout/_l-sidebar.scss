@@ -1,24 +1,3 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the sidebar of the core/application.
 // -----------------------------------------------------------------------------
-
-$sidebar-name: "l-sidebar";
-
-.#{$sidebar-name} {
-  background-color: $dark-grey;
-  grid-area: sidebar;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  a {
-    color: $mid-grey;
-    font-size: 26px;
-  }
-  a:hover {
-    color: $light-green;
-  }
-  .l-sidebar-active {
-    color: $light-green;
-  }
-}

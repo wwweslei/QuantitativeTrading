@@ -4,23 +4,13 @@
 
 .c-card {
     margin: 10px; // ver depois
-    background-color: $dark-grey;
-    color: $light-white;
-    width: 14%;
-    height: 110px;
-    border-radius: 10px;
-    & h4 {
-        color: $light-white;
-        margin: 0;
-        padding: 10px 0px 0px 10px;
-        font-size: 13px;
-        font-weight: bold;
-        text-align: left;
-    }
+    background-color: #264b5d;
+    color: #f5da72;
     & p {
-        margin: 0;
-        padding: 0px 13px 8px 0px;
         font-size: 13px;
-        text-align: right;
+        color: whitesmoke;
+    }
+    & .card-text--up{
+        padding-bottom: 7px;
     }
 }
