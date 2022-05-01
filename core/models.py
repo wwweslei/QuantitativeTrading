@@ -73,7 +73,7 @@ class StocksIbov(models.Model):
         verbose_name_plural = "Stocks Ibovespa"
 
     def __str__(self):
-        return self.name
+        return f"{self.name}"
 
 
 class Stocks_br(models.Model):
@@ -87,7 +87,7 @@ class Stocks_br(models.Model):
         verbose_name_plural = "Stocks Brazil"
 
     def __str__(self):
-        return self.name
+        return f"{self.name}"
 
 
 class Fii(models.Model):
@@ -100,7 +100,7 @@ class Fii(models.Model):
         verbose_name_plural = "FII Brazil"
 
     def __str__(self):
-        return self.name
+        return f"{self.name}"
 
 
 class Portfolio(models.Model):
@@ -118,6 +118,7 @@ class Portfolio(models.Model):
     def __str__(self):
         return f"{self.user} {self.symbol}"
 
+
 class Stocks_overview(models.Model):
     country = models.TextField()
     name = models.TextField()
@@ -129,13 +130,10 @@ class Stocks_overview(models.Model):
     change_percentage = models.FloatField()
     turnover = models.FloatField()
     currency = models.TextField()
+
     class Meta:
         db_table = "stocks_overview"
         verbose_name_plural = "stocks overview"
 
     def __str__(self):
         return f"{self.symbol}"
-
-    
-
-    

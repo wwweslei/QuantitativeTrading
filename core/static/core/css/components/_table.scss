@@ -1,0 +1,17 @@
+.table {
+  background-color: #264b5d;
+  margin-top: 10px;
+  color: whitesmoke;
+  :hover {
+    cursor: pointer;
+  }
+  & thead {
+    color: #f5da72;
+  }
+  & td {
+    font-size: 13px;
+  }
+  & .table-symbol {
+    color: #f5da72;
+  }
+}

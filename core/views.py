@@ -1,10 +1,23 @@
+from __future__ import print_function
+
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
-from django.db import models
+
 from core.finance import download_market_data
-from .models import Dollar, Ibovespa, Bitcoin, Smal, Xfix, SP_500, Nasdaq
+
+from .models import (
+    SP_500,
+    Bitcoin,
+    Dollar,
+    Ibovespa,
+    Nasdaq,
+    Smal,
+    Stocks_overview,
+    Xfix,
+)
 
 
-def calc(obj: models.Model) -> dict:
+def calc(obj) -> dict:
     """Calculate the percentage and variation of assets.
 
     Args:
@@ -20,16 +33,15 @@ def calc(obj: models.Model) -> dict:
     }
 
 
-def index(request):
+def index(request: HttpRequest) -> HttpResponse:
     """Render the index page.
 
     Args:
-        request (_type_): request object
-
+        request (HttpRequest): HTTP request
     Returns:
-        _type_: render template index.html
-    """
-    download_market_data.run_all()
+        HttpResponse: HTTP response"""
+
+    # download_market_data.run_all()
     card_info = {
         "wdo": calc(Dollar),
         "ind": calc(Ibovespa),
@@ -39,9 +51,17 @@ def index(request):
         "xfix": calc(Xfix),
         "nasdaq": calc(Nasdaq),
     }
-
+    overview_low = Stocks_overview.objects.all()
+    overview_low = overview_low.order_by("change_percentage")[:15]
+    overview_high = Stocks_overview.objects.all()
+    overview_high = overview_high.order_by("-change_percentage")[:15]
     return render(
         request,
         "core/home/index.html",
-        {"card_info": card_info, "title": "Quantitative Trading"},
+        {
+            "card_info": card_info,
+            "title": "Quantitative Trading",
+            "overview_high": overview_high,
+            "overview_low": overview_low,
+        },
     )
