@@ -14,4 +14,16 @@
   & .table-symbol {
     color: #f5da72;
   }
+  border-radius: 3px;
+}
+@media (max-width: 800px) {
+  .table-max {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .table-min,
+  .table-max {
+    display: none;
+  }
 }

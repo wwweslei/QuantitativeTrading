@@ -1,20 +1,10 @@
-from __future__ import print_function
-
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
 from core.finance import download_market_data
 
-from .models import (
-    SP_500,
-    Bitcoin,
-    Dollar,
-    Ibovespa,
-    Nasdaq,
-    Smal,
-    Stocks_overview,
-    Xfix,
-)
+from .models import (SP_500, Bitcoin, Dollar, Ibovespa, Nasdaq, Smal,
+                     Stocks_overview, Xfix)
 
 
 def calc(obj) -> dict:
@@ -41,7 +31,7 @@ def index(request: HttpRequest) -> HttpResponse:
     Returns:
         HttpResponse: HTTP response"""
 
-    # download_market_data.run_all()
+    download_market_data.run_all()
     card_info = {
         "wdo": calc(Dollar),
         "ind": calc(Ibovespa),
@@ -52,9 +42,9 @@ def index(request: HttpRequest) -> HttpResponse:
         "nasdaq": calc(Nasdaq),
     }
     overview_low = Stocks_overview.objects.all()
-    overview_low = overview_low.order_by("change_percentage")[:15]
+    overview_low = overview_low.order_by("change_percentage")[:20]
     overview_high = Stocks_overview.objects.all()
-    overview_high = overview_high.order_by("-change_percentage")[:15]
+    overview_high = overview_high.order_by("-change_percentage")[:20]
     return render(
         request,
         "core/home/index.html",
