@@ -3,14 +3,14 @@
 // ----
 
 .c-card {
-    margin: 10px; // ver depois
-    background-color: #264b5d;
-    color: #f5da72;
-    & p {
-        font-size: 13px;
-        color: whitesmoke;
-    }
-    & .card-text--up{
-        padding-bottom: 7px;
-    }
+  margin: 10px; // ver depois
+  background-color: $base-color;
+  color: $secondary-color;
+  & p {
+    font-size: 13px;
+    color: $white-color;
+  }
+  & .card-text--up {
+    padding-bottom: 7px;
+  }
 }

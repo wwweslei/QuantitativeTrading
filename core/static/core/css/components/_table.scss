@@ -1,28 +1,23 @@
 .table {
-  background-color: #264b5d;
+  background-color: $base-color;
   margin-top: 10px;
-  color: whitesmoke;
+  color: $white-color;
   :hover {
     cursor: pointer;
   }
   & thead {
-    color: #f5da72;
+    color: $secondary-color;
   }
   & td {
     font-size: 13px;
   }
   & .table-symbol {
-    color: #f5da72;
+    color: $secondary-color;
   }
   border-radius: 3px;
 }
-@media (max-width: 800px) {
-  .table-max {
-    display: none;
-  }
-}
 @media (max-width: 600px) {
-  .table-min,
+  .table-var,
   .table-max {
     display: none;
   }
