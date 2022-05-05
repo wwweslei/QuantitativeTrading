@@ -11,8 +11,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+
 import django_heroku
-from decouple import config, Csv
+from decouple import Csv, config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -115,6 +116,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Registration
+# https://docs.djangoproject.com/en/4.0/topics/auth/
+
+LOGOUT_REDIRECT_URL = "index"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -147,3 +152,4 @@ COMPRESS_PRECOMPILERS = (("text/x-sass", "sassc {infile} {outfile}"),)
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 django_heroku.settings(locals())
+

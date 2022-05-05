@@ -1,0 +1,15 @@
+{% extends '../layouts/base.html' %}
+
+{% block title %}
+    {{title.title}}
+{% endblock title %}
+
+{% block header %}
+{%include '../includes/navbar.html'%}
+{% endblock header %}
+
+
+{% block main%}
+<main class="l-main">
+    {% include '../includes/cards.html'%}
+{% endblock main %}
