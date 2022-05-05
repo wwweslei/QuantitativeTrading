@@ -55,3 +55,6 @@ def index(request: HttpRequest) -> HttpResponse:
             "overview_low": overview_low,
         },
     )
+def profile(request: HttpRequest) -> HttpResponse:
+    """Render the profile page."""
+    return render(request, "core/home/profile.html", {"title": "Profile"})
