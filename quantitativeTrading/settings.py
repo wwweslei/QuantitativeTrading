@@ -44,7 +44,10 @@ INSTALLED_APPS = [
     "compressor",
     "rangefilter",
     "fontawesomefree",
+    "crispy_forms",
+    "crispy_bootstrap5",
     "django_extensions",
+
 ]
 
 MIDDLEWARE = [
@@ -115,6 +118,12 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+# Cryspy_forms botstrap5
+# https://github.com/django-crispy-forms/crispy-bootstrap5
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Registration
 # https://docs.djangoproject.com/en/4.0/topics/auth/

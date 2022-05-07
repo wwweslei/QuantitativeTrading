@@ -1,39 +1,28 @@
-{% extends '../core/layouts/base.html' %} 
-{% block header %} 
-{%include'../core/includes/navbar.html'%}
-{% endblock header %}
-{% block main%}
-{% if form.errors %}
-<p>Seu nome de usuário e senha não correspondem. Por favor, tente novamente.</p>
-{% endif %}
-{% if next %}
-{% if user.is_authenticated %}
-<p>
-  Sua conta não tem acesso a esta página. Para prosseguir, faça o login com uma
-  conta que tenha acesso.
-</p>
-{% else %}
-<p>Por favor, faça o login para ver esta página.</p>
-{% endif %}
-{% endif %}
-
-<form method="post" action="{% url 'login' %}">
-  {% csrf_token %}
-  <table>
-    <tr>
-      <td>{{ form.username.label_tag }}</td>
-      <td>{{ form.username }}</td>
-    </tr>
-    <tr>
-      <td>{{ form.password.label_tag }}</td>
-      <td>{{ form.password }}</td>
-    </tr>
-  </table>
-  <input type="submit" value="login" />
-  <input type="hidden" name="next" value="{{ next }}" />
-</form>
-
-{# Assumes you setup the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Última senha</a></p>
-
+{% extends '../core/layouts/base.html' %} {% load static %} {% block header %}
+{% include '../core/includes/navbar.html' %} {% endblock header %} {% block main%}
+<section class="position-absolute top-50 start-50 translate-middle">
+  <div class="card shadow-lg c-card--login">
+    <div class="card-body p-5">
+      <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
+      {% load crispy_forms_tags %}
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %} {{ form|crispy }}
+        <div class="d-flex align-items-center ">
+          <div class="form-check">
+            <a href="{% url 'password_reset' %}" 
+              >Redefinir senha</a
+            >
+          </div>
+          <button type="submit" class="btn btn-card ms-auto">Login</button>
+        </div>
+      </form>
+    </div>
+    <div class="card-footer py-3 border-0">
+      <div class="text-center">
+        Não tem uma conta?
+        <a href="register.html" class="text-dark">Crie uma</a>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock main %}

@@ -14,3 +14,15 @@
     padding-bottom: 7px;
   }
 }
+.c-card--login{
+  background-color: $primary-color;
+  color: $white-color--light;
+  & .btn-card{
+    background-color: $secondary-color;
+  }
+}
+
+.card-footer{
+  background-color: $base-color;
+
+}
