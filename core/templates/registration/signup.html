@@ -7,19 +7,25 @@
     <section class="position-absolute top-50 start-50 translate-middle">
         <div class="card shadow-lg c-card--registration">
             <div class="card-body p-5">
-                <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>
+                                <h1 class="fs-4 fw-bold mb-4">{{ message }}</h1>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <h1 class="fs-4 card-title fw-bold mb-4">Conta Trading</h1>
                 {% load crispy_forms_tags %}
-                <form method="post" action="{% url 'login' %}">
+                <form method="post">
                     {% csrf_token %} {{ form|crispy }}
-                    <div class="d-flex align-items-center ">
+                    <div class="d-flex flex-row-reverse">
                         <div class="form-check">
-                            <a href="{% url 'password_reset' %}">Redefinir senha</a>
+                            <button type="submit" class="btn btn-card ms-auto">Enviar</button>
                         </div>
-                        <div class="form-check">
-                            <button type="submit" class="btn btn-card ms-auto">Login</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
             <div class="card-footer py-3 border-0">
                 <div class="text-center">

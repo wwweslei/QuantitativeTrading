@@ -1,5 +1,7 @@
+from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from core.finance import download_market_data
 
@@ -50,11 +52,45 @@ def index(request: HttpRequest) -> HttpResponse:
         "core/home/index.html",
         {
             "card_info": card_info,
-            "title": "Quantitative Trading",
+            "title": "Home",
             "overview_high": overview_high,
             "overview_low": overview_low,
         },
     )
+
+
 def profile(request: HttpRequest) -> HttpResponse:
     """Render the profile page."""
-    return render(request, "core/home/profile.html", {"title": "Profile"})
+    download_market_data.run_all()
+    card_info = {
+        "wdo": calc(Dollar),
+        "ind": calc(Ibovespa),
+        "btc": calc(Bitcoin),
+        "smal": calc(Smal),
+        "sp": calc(SP_500),
+        "xfix": calc(Xfix),
+        "nasdaq": calc(Nasdaq),
+    }
+
+    return render(
+        request,
+        "core/home/profile.html",
+        {
+            "card_info": card_info,
+            "title": "Profile",
+        },
+    )
+
+
+def signup(request: HttpRequest) -> HttpResponse:
+    """Render the register page."""
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Conta criada com sucesso!')
+            return redirect('signup')
+
+    else:
+        form = UserCreationForm()
+    return render(request, "registration/signup.html", {"form": form})
