@@ -1,5 +1,17 @@
 name: Django CI
-
+env:
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  DATABASE_URL_HEROKU: ${{ secrets.DATABASE_URL_HEROKU }}
+  DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+  DATABASE_USER: ${{ secrets.DATABASE_USER }}
+  DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+  DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+  EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
+  EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
+  EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
+  DEFAULT_FROM_EMAIL: ${{ secrets.DEFAULT_FROM_EMAIL }}
 on:
   push:
     branches: [ main ]
