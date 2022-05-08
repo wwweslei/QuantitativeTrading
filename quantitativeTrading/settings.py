@@ -18,7 +18,6 @@ from decouple import Csv, config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -47,7 +46,6 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "django_extensions",
-
 ]
 
 MIDDLEWARE = [
@@ -85,7 +83,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "quantitativeTrading.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -100,29 +97,31 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 # Cryspy_forms botstrap5
 # https://github.com/django-crispy-forms/crispy-bootstrap5
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Registration
@@ -130,17 +129,23 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 LOGOUT_REDIRECT_URL = "index"
 
+# Email Backend
+# https://docs.djangoproject.com/en/4.0/topics/email/
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST = config("EMAIL_HOST")
+EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
 LANGUAGE_CODE = "pt-br"
-
 TIME_ZONE = "America/Sao_Paulo"
-
 USE_I18N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -154,11 +159,10 @@ STATICFILES_FINDERS = (
 )
 
 COMPRESS_ENABLED = True  # ou not DEBUG
-COMPRESS_PRECOMPILERS = (("text/x-sass", "sassc {infile} {outfile}"),)
+COMPRESS_PRECOMPILERS = (("text/x-sass", "sassc {infile} {outfile}"), )
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 django_heroku.settings(locals())
-

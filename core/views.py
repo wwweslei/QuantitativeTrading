@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
@@ -58,7 +59,7 @@ def index(request: HttpRequest) -> HttpResponse:
         },
     )
 
-
+@login_required
 def profile(request: HttpRequest) -> HttpResponse:
     """Render the profile page."""
     download_market_data.run_all()

@@ -1,4 +1,5 @@
 import pandas as pd
+
 # ver https://github.com/alvarobartt/pyrtfolio/
 
 def get_ibov_info():

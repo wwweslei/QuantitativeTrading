@@ -1,11 +1,14 @@
 from dataclasses import fields
 from re import search
+
 from django.contrib import admin
 from rangefilter.filters import DateRangeFilter
 
+from .models import (SP_500, Bitcoin, Dollar, Ibovespa, Nasdaq, Portfolio,
+                     Smal, Stocks_overview, Xfix)
+
 # Register your models here.
 
-from .models import Ibovespa, Dollar, Bitcoin, Smal, SP_500, Xfix, Nasdaq, Portfolio, Stocks_overview
 @admin.register(Bitcoin)
 @admin.register(Xfix)
 @admin.register(Smal)
