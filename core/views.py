@@ -6,8 +6,9 @@ from django.shortcuts import redirect, render
 
 from core.finance import download_market_data
 
-from .models import (SP_500, Bitcoin, Dollar, Ibovespa, Nasdaq, Smal,
-                     Stocks_overview, Xfix)
+from .forms import PortfolioForm
+from .models import (SP_500, Bitcoin, Dollar, Ibovespa, Nasdaq, Portfolio,
+                     Smal, Stocks_overview, Xfix)
 
 
 def calc(obj) -> dict:
@@ -91,7 +92,17 @@ def signup(request: HttpRequest) -> HttpResponse:
             form.save()
             messages.success(request, 'Conta criada com sucesso!')
             return redirect('signup')
-
-    else:
-        form = UserCreationForm()
+    form = UserCreationForm()
     return render(request, "registration/signup.html", {"form": form})
+
+@login_required
+def form_portfolio(request: HttpRequest) -> HttpResponse:
+    """Render the form to create a portfolio."""
+    if request.method == "POST":
+        form = PortfolioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    form = PortfolioForm()
+    return render(request, "core/includes/form_portfolio.html", {"title": "Portfolio", "form": form})
+

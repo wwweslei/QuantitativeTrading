@@ -26,8 +26,15 @@
                 {% if user.is_superuser %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
-                    {% endif %}
-                </li>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                    </li>
+                {% endif %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle"
                        href="#"
@@ -61,7 +68,7 @@
                        role="button"
                        data-bs-toggle="dropdown"
                        aria-expanded="false">
-                        Olá {{ user.get_username }}
+                        Ol� {{ user.get_username }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark"
                         aria-labelledby="navbarDropdownMenuLink">
@@ -93,8 +100,7 @@
                             >
                         </li>
                         <li>
-                            <a class="nav-link"
-                               href="{% url 'signup' %}?next={{ request.path }}">
+                            <a class="nav-link" href="{% url 'signup' %}?next={{ request.path }}">
                             Criar conta</a
                             >
                         </li>

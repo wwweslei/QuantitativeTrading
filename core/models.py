@@ -105,8 +105,8 @@ class Fii(models.Model):
 
 class Portfolio(models.Model):
     user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
-    date = models.DateTimeField()
-    symbol = models.TextField(primary_key=True)
+    date = models.DateField()
+    symbol = models.CharField(max_length=10)
     value = models.FloatField()
     total_value = models.FloatField()
     qtd = models.IntegerField()

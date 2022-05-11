@@ -1,28 +1,19 @@
-{% extends '../core/layouts/base.html' %}
+{% extends '../layouts/base.html' %}
 {% load static %}
 {% block header %}
-    {% include '../core/includes/navbar.html' %}
+    {% include '../includes/navbar.html' %}
 {% endblock header %}
 {% block main %}
     <section class="position-absolute top-50 start-50 translate-middle">
-        <div class="card shadow-lg c-card--registration">
+        <div class="shadow-lg c-card--registration">
             <div class="card-body p-5">
-                {% if messages %}
-                    <ul>
-                        {% for message in messages %}
-                            <li>
-                                <h1 class="fs-4 fw-bold mb-4">{{ message }}</h1>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-                <h1 class="fs-4 card-title fw-bold mb-4">Conta Trading</h1>
+                <h1 class="fs-4 card-title fw-bold mb-4">Adicionar ativo</h1>
                 {% load crispy_forms_tags %}
                 <form method="post">
                     {% csrf_token %} {{ form|crispy }}
                     <div class="d-flex flex-row-reverse">
                         <div class="form-check">
-                            <button type="submit" class="btn btn-card ms-auto">Enviar</button>
+                            <button type="submit" class="btn btn-card ms-auto">Adicionar</button>
                         </div>
                     </div>
                 </form>
@@ -31,7 +22,7 @@
                 <div class="text-center">
                     Não tem uma conta?
                     <a href="{% url 'signup' %}">Crie uma</a>
-                </div>
+                </div>  
             </div>
         </div>
     </section>

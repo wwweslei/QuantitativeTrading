@@ -1,68 +1,53 @@
+from datetime import date, timedelta
+
+import investpy
 import pandas as pd
 
 
-def get_direct_treasure():
-    url = (
-        "https://www.tesourotransparente.gov.br/ckan/dataset/df56aa42-484a-4a59-8184-7676580c81e3/"
-        "resource/796d2059-14e9-44e3-80c9-2d9e30b405c1/download/PrecoTaxaTesouroDireto.csv"
-    )
-    df = pd.read_csv(url, sep=";", decimal=",")
-    df["Data Vencimento"] = pd.to_datetime(df["Data Vencimento"], dayfirst=True)
-    df["Data Base"] = pd.to_datetime(df["Data Base"], dayfirst=True)
-    multi_indice = pd.MultiIndex.from_frame(df.iloc[:, :3])
-    df = df.set_index(multi_indice).iloc[:, 3:]
-    return df
+class Treasure:
 
+    def __init__(self):
+        self.treasure = {}
+        search = investpy.search_quotes(text='tesouro',
+                                        products=['bonds'],
+                                        countries=['brazil'],
+                                        )
+        for result in search:
+            self.treasure[result.symbol[:9]] = result
 
-def get_sale_treasure():
-    url = (
-        "https://www.tesourotransparente.gov.br/ckan/dataset/f0468ecc-ae97-4287-89c2-6d8139fb4343/"
-        "resource/e5f90e3a-8f8d-4895-9c56-4bb2f7877920/download/VendasTesouroDireto.csv"
-    )
-    df = pd.read_csv(url, sep=";", decimal=",")
-    df["Vencimento do Titulo"] = pd.to_datetime(
-        df["Vencimento do Titulo"], dayfirst=True
-    )
-    df["Data Venda"] = pd.to_datetime(df["Data Venda"], dayfirst=True)
-    multi_indice = pd.MultiIndex.from_frame(df.iloc[:, :3])
-    df = df.set_index(multi_indice).iloc[:, 3:]
-    return df
+    def get_list(self) -> list:
+        """ Returns a list of all symbols
 
+        Returns:
+            list: List of all symbols in the treasure brazil
+        ex: [
+            'LFT030123', 'LFT030124', 'LFT030127', 'LFT090122', 'LFT090123',
+            'LTN010123', 'LTN070124', 'NTB031523', 'NTB051523', 'NTB051535',
+            'NTB051545', 'NTB051555', 'NTB081522', 'NTB081524', 'NTB081526',
+            'NTB081528', 'NTB081530', 'NTB081540', 'NTB081550']"""
+        return sorted(self.treasure.keys())
 
-def search_repurchases_treasure():
-    url = (
-        "https://www.tesourotransparente.gov.br/ckan/dataset/f30db6e4-6123-416c-b094-be8dfc823601/"
-        "resource/30c2b3f5-6edd-499a-8514-062bfda0f61a/download/RecomprasTesouroDireto.csv"
-    )
-    df = pd.read_csv(url, sep=";", decimal=",")
-    df["Vencimento do Titulo"] = pd.to_datetime(
-        df["Vencimento do Titulo"], dayfirst=True
-    )
-    df["Data Resgate"] = pd.to_datetime(df["Data Resgate"], dayfirst=True)
-    multi_indice = pd.MultiIndex.from_frame(df.iloc[:, :3])
-    df = df.set_index(multi_indice).iloc[:, 3:]
-    return df
+    def get_historical_data(self, symbol:str, days:int=1)-> pd.DataFrame:
+        """Returns the historical data for a given symbol
 
+        Args:
+            symbol (str): symbols defined in get_list()
+            days (int, optional): number days. Defaults to 1.
 
-def get_type_of_treasure():
-    return (
-        search_repurchases_treasure()
-        .index.droplevel(level=1)
-        .droplevel(level=1)
-        .drop_duplicates()
-        .to_list()
-    )
+        Returns:
+            pd.DataFrame: historical data for the given symbol
+            
+        ex:  treasure.get_historical_data('LFT030127')
+        
+            Date         Open      High       Low        Close      Change Pct
+            2022-05-10  11531.937  11531.937  11531.937  11531.937  0.0"""     
 
-
-def selic():
-    selic_df = search_repurchases_treasure()
-    selic_df.sort_index(inplace=True)
-    return selic_df.loc[("Tesouro Selic", "2025-03-01")]
-
-
-def main():
-    print(get_type_of_treasure())
+        to_date = date.today().strftime('%d/%m/%Y')
+        from_date = (date.today() - timedelta(days=days)).strftime('%d/%m/%Y')
+        return self.treasure[symbol].retrieve_historical_data(
+            from_date=from_date, to_date=to_date)[1:]
 
 
 if __name__ == "__main__":
-    main()
+    treasure = Treasure()
+    print(treasure.get_historical_data('LFT030127'))
