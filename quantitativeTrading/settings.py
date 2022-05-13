@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
 from pathlib import Path
 
 import django_heroku
@@ -138,6 +137,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = config("EMAIL_HOST")
 EMAIL_HOST_USER = config("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+ADMINS = [('Weslei', str(config("ADMIN_EMAIL")))]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -166,3 +166,28 @@ COMPRESS_PRECOMPILERS = (("text/x-sass", "sassc {infile} {outfile}"), )
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 django_heroku.settings(locals())
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': config('DJANGO_LOG_LEVEL', 'DEBUG'),
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    },
+}

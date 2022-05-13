@@ -1,60 +1,55 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col">
-      <table class="table table-responsive table-hover table-sm table-one">
-        <thead>
-          <tr>
-            <th scope="col">Cod</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Último</th>
-            <th class="table-max" scope="col">Máximo</th>
-            <th scope="col">Mínimo</th>
-            <th scope="col">Var. %</th>
-            <th class="table-var" scope="col">Variação</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for view in overview_high %}
-          <tr>
-            <td class="table-symbol">{{view.symbol}}</td>
-            <td>{{view.name|title}}</td>
-            <td>{{view.last}}</td>
-            <td class="table-max">{{view.high}}</td>
-            <td>{{view.low}}</td>
-            <td> <nobr>{{view.change_percentage}} %</nobr></td>
-            <td class="table-var">{{view.change}}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    <div class="col">
-      <table class="table table-responsive table-hover table-sm table-two">
-        <thead>
-          <tr>
-            <th scope="col">Cod</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Último</th>
-            <th class="table-max" scope="col">Máximo</th>
-            <th scope="col">Mínimo</th>
-            <th scope="col">Var. %</th>
-            <th class="table-var" scope="col">Variação</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for view in overview_low %}
-          <tr>
-            <td class="table-symbol">{{view.symbol}}</td>
-            <td>{{view.name|title}}</td>
-            <td>{{view.last}}</td>
-            <td class="table-max">{{view.high}}</td>
-            <td>{{view.low}}</td>
-            <td> <nobr>{{view.change_percentage}} %</nobr></td>
-            <td class="table-var">{{view.change}}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
+<div class="table-container">
+  <table class="table table-responsive table-hover table-sm table-one">
+    <thead>
+      <tr>
+        <th scope="col">Cod</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Último</th>
+        <th class="table-max" scope="col">Máximo</th>
+        <th scope="col">Mínimo</th>
+        <th scope="col">Var. %</th>
+        <th class="table-var" scope="col">Variação</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for view in overview_high %}
+      <tr>
+        <td class="table-symbol">{{view.symbol}}</td>
+        <td>{{view.name|title}}</td>
+        <td>{{view.last}}</td>
+        <td class="table-max">{{view.high}}</td>
+        <td>{{view.low}}</td>
+        <td><nobr>{{view.change_percentage}} %</nobr></td>
+        <td class="table-var">{{view.change}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <table class="table table-responsive table-hover table-sm table-two">
+    <thead>
+      <tr>
+        <th scope="col">Cod</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Último</th>
+        <th class="table-max" scope="col">Máximo</th>
+        <th scope="col">Mínimo</th>
+        <th scope="col">Var. %</th>
+        <th class="table-var" scope="col">Variação</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for view in overview_low %}
+      <tr>
+        <td class="table-symbol">{{view.symbol}}</td>
+        <td>{{view.name|title}}</td>
+        <td>{{view.last}}</td>
+        <td class="table-max">{{view.high}}</td>
+        <td>{{view.low}}</td>
+        <td><nobr>{{view.change_percentage}} %</nobr></td>
+        <td class="table-var">{{view.change}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
