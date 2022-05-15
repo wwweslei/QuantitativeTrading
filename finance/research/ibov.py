@@ -1,6 +1,5 @@
 import pandas as pd
 
-# ver https://github.com/alvarobartt/pyrtfolio/
 
 def get_ibov_info():
     url = "http://bvmf.bmfbovespa.com.br/indices/ResumoCarteiraTeorica.aspx?Indice=IBOV&amp;idioma=pt-br"

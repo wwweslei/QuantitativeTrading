@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 
-from core.finance import download_market_data
+from finance.account import download_market_data
 
 from .forms import PortfolioForm
 from .models import (SP_500, Bitcoin, Dollar, Ibovespa, Nasdaq, Portfolio,

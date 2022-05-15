@@ -1,6 +1,14 @@
 .tradingview-container{
     display: flex;
     justify-content:space-around;
-    flex-wrap: wrap;
-    margin-top:  2px;   
+    flex-wrap: nowrap;
+    margin-top:  2px;
+    overflow: hidden;   
 }
+
+
+@media (max-width: 600px) {
+    .tradingview-container{
+    flex-wrap:wrap;
+    }
+  }
