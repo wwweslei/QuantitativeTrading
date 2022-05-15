@@ -25,6 +25,7 @@ psycopg2-binary = "^2.9.3"
 SQLAlchemy = "^1.4.32"
 openpyxl = "^3.0.9"
 crispy-bootstrap5 = "^0.6"
+whitenoise = "^6.1.0"
 
 [tool.poetry.dev-dependencies]
 black = {extras = ["jupyter"], version = "^22.3.0"}
