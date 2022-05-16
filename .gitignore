@@ -130,17 +130,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-quantitativeTrading/core/static/core/css/abstracts/README.md
-quantitativeTrading/core/static/core/css/base/README.md
-quantitativeTrading/core/static/core/css/components/README.md
-quantitativeTrading/core/static/core/css/layout/README.md
-quantitativeTrading/core/static/core/css/pages/README.md
-quantitativeTrading/core/static/core/css/themes/README.md
-quantitativeTrading/core/static/core/css/vendors/README.md
 quantitativeTrading/core/migrations/
 test.py
 staticfiles/
-static/
 core/finance/Untitled-1.ipynb 
 documents/negociosNUinvest.xlsx
 core/migrations/

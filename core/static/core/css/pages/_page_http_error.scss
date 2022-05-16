@@ -1,0 +1,76 @@
+.page_error {
+    padding: 40px 0;
+    background: #fff;
+    font-family: "Poppins";
+    height: 94vh;
+    & a {
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+        background: #39ac31;
+        display: inline-block;
+    }
+
+    & a:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+    & h1
+    {
+        font-size: 80px;
+    }
+    & h3
+    {
+        font-size: 80px;
+    }
+    & img {
+        width: 100%;
+    }
+}
+.page-500{
+    background: $body_bg_color; 
+    color: $white-color;
+    & .text-500{
+        color: $secondary-color
+    }
+    .h2{
+        font-size: 50px;
+    }
+    
+}
+
+.page-403{
+    background: $body_bg_color; 
+    color: $white-color;
+    & .text-403{
+        color: $secondary-color
+    }
+}
+
+
+.four_zero_four_bg_400 {
+    background: url("../img/404.gif");
+    height: 400px;
+    background-position: center;
+}
+
+.four_zero_four_bg_403 {
+    background: url("../img/403.gif")no-repeat;;
+    height: 400px;
+    background-position: center;
+}
+.four_zero_four_bg_404 {
+    background: url("../img/404.gif");
+    height: 400px;
+    background-position: center;
+}
+.four_zero_four_bg_500 {
+    background: url("../img/500.gif") no-repeat;
+    margin-bottom: 30px;
+    height: 400px;
+    background-position: center;
+}
+
+.content_box {
+    margin-top: -50px;
+}
