@@ -1,0 +1,27 @@
+{% extends '../layouts/base.html' %}
+{% block title %}
+    {{ title.title }}
+{% endblock title %}
+{% block header %}
+    {% include '../includes/navbar.html' %}
+{% endblock header %}
+{% block main %}
+    <main class="l-main">
+        <section class="page_error page-500">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="col-sm-10 col-sm-offset-1 text-center">
+                            <div class="four_zero_four_bg_500"></div>
+                            <div class="content_box">
+                                <h3 class="text-center text-500">500</h3>
+                                <h3 class="h2">Algo errado n�o estar certo</h3>
+                                <a href="{% url 'index' %}">Home</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock main %}

@@ -21,13 +21,19 @@ admin.site.site_header = "Quantitative Trading Admin"
 admin.site.site_title = "Quantitative Trading"
 admin.site.index_title = "Welcome to Quantitative Trading Researcher Portal"
 
+handler404 = "core.error_views.handler404"
+handler500 = "core.error_views.handler500"
+handler400 = "core.error_views.handler400"
+handler403 = "core.error_views.handler403"
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('core.urls')),
+    path("admin/", admin.site.urls),
+    path("", include("core.urls")),
 ]
 
 if settings.DEBUG:
     import debug_toolbar
+
     urlpatterns = [
-        path('__debug__/', include(debug_toolbar.urls)),
+        path("__debug__/", include(debug_toolbar.urls)),
     ] + urlpatterns
