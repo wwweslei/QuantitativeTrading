@@ -6,8 +6,7 @@ def handler404(request, exception, template_name="core/http_error/404.html"):
 
 
 def handler500(request, template_name="core/http_error/500.html"):
-    return render(request, template_name, {"title": "500 Internal Server Error"}, status=500
-    )
+    return render(request, template_name, {"title": "500 Internal Server Error"}, status=500)
 
 
 def handler400(request, exception, template_name="core/http_error/400.html"):
