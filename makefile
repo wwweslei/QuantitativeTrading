@@ -35,3 +35,5 @@ note:
 
 server:
 	waitress-serve --listen=*:8000 quantitativeTrading.wsgi:application
+co:
+	poetry run python manage.py collectstatic --noinput
