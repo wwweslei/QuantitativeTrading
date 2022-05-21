@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from finance.account.download_market_data import run_all
+from finance.research.download_market_data import run_all
 
 
 class Command(BaseCommand):

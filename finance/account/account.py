@@ -7,13 +7,7 @@ from decouple import config
 from django.conf import settings
 from sqlalchemy import create_engine
 
-ENVIRONMENT = 'config("ENVIRONMENT")'
-
-if ENVIRONMENT == "development":
-    url = config("DATABASE_URL")
-else:
-    url = config("DATABASE_URL_HEROKU")
-conn = create_engine(url)
+conn = create_engine(config("DATABASE_URL"))
 
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "quantitativeTrading.settings")

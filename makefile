@@ -32,3 +32,6 @@ shell:
 
 note:
 	poetry run python manage.py shell_plus --notebook
+
+server:
+	waitress-serve --listen=*:8000 quantitativeTrading.wsgi:application
