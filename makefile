@@ -25,7 +25,7 @@ run:
 	poetry run python manage.py runserver_plus
 
 test:
-	poetry run python manage.py test core.tests
+	poetry run pytest core -v
 
 shell:
 	poetry run python manage.py shell_plus

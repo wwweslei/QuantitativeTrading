@@ -36,4 +36,7 @@
       color: $secondary-color;
     }
   }
+  & #hint_id_password1, #hint_id_password2, #hint_id_username{
+    color: $secondary-color;
+  }
 }
