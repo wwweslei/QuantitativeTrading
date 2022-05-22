@@ -157,7 +157,8 @@ STATICFILES_FINDERS = (
     "compressor.finders.CompressorFinder",
 )
 
-COMPRESS_ENABLED = True  # ou not DEBUG
+COMPRESS_ENABLED = False  # ou not DEBUG
+COMPRESS_OFFLINE = True
 COMPRESS_PRECOMPILERS = (("text/x-sass", "sassc {infile} {outfile}"),)
 
 # Default primary key field type
