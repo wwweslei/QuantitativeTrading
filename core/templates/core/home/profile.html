@@ -1,15 +1,15 @@
-{% extends '../layouts/base.html' %}
+{% extends 'core/layouts/base.html' %}
 
 {% block title %}
     {{title.title}}
 {% endblock title %}
 
 {% block header %}
-{%include '../includes/navbar.html'%}
+{%include 'core/includes/navbar.html'%}
 {% endblock header %}
 
 
 {% block main%}
 <main class="l-main">
-    {% include '../includes/widget_tradingView.html'%}
+    {% include 'core/includes/widget_tradingView.html'%}
 {% endblock main %}

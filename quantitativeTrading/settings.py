@@ -42,11 +42,10 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "compressor",
     "rangefilter",
-    "fontawesomefree",
     "crispy_forms",
     "crispy_bootstrap5",
     "django_extensions",
-]
+]   
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -69,7 +68,7 @@ INTERNAL_IPS = [
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        'DIRS': [str(BASE_DIR.joinpath("templates"))],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
