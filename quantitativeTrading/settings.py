@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "compressor",
     "rangefilter",
+    "fontawesomefree",
     "crispy_forms",
     "crispy_bootstrap5",
     "django_extensions",
@@ -157,8 +158,7 @@ STATICFILES_FINDERS = (
     "compressor.finders.CompressorFinder",
 )
 
-COMPRESS_ENABLED = False  # ou not DEBUG
-COMPRESS_OFFLINE = True
+COMPRESS_ENABLED = True  # ou not DEBUG
 COMPRESS_PRECOMPILERS = (("text/x-sass", "sassc {infile} {outfile}"),)
 
 # Default primary key field type

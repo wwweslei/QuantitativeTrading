@@ -22,11 +22,9 @@
             crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/cf554a4166.js" crossorigin="anonymous">
         </script>
-        {% compress css %}
-        <link rel="stylesheet" type="text/x-sass" href="{% static 'core/css/main.scss' %}?{% now 'U' %}">
-        {% endcompress %}
-        {% compress js %}
         <script type="text/javascript" src="{% static 'core/js/main.js' %}"></script>
+        {% compress css inline %}
+        <link rel="stylesheet" type="text/x-sass" href="{% static 'core/css/main.scss' %}?{% now 'U' %}">
         {% endcompress %}
         <title>
             {% block title %}
