@@ -20,11 +20,12 @@
             rel="stylesheet"
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
             crossorigin="anonymous">
-        {% compress css inline %}
+        <script src="https://kit.fontawesome.com/cf554a4166.js" crossorigin="anonymous">
+        </script>
+        {% compress css %}
         <link rel="stylesheet" type="text/x-sass" href="{% static 'core/css/main.scss' %}?{% now 'U' %}">
         {% endcompress %}
         {% compress js %}
-        <script src="{% static 'core/js/vendors/fontawesome/all.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'core/js/main.js' %}"></script>
         {% endcompress %}
         <title>
