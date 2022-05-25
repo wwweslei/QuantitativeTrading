@@ -48,3 +48,19 @@ repos:
         args: [export, --format, requirements.txt, --output, requirements.txt]
         language: system
         pass_filenames: false
+
+
+  - repo: local
+    hooks:
+      - id: run pytest
+        name: pytest
+        entry: poetry
+        args: [run, pytest, -vv]
+        pass_filenames: false
+        language: system
+
+  - repo: https://github.com/myint/docformatter
+    rev: v1.4
+    hooks:
+      - id: docformatter
+        args: [--in-place]

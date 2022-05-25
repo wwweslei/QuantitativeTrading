@@ -77,7 +77,7 @@ indent='    '
 
 # flake8.toml
 # https://flake8.pycqa.org/en/latest/user/configuration.html
-[flake8]
+[tool.flake8]
 max-line-length = 120
 target_version = ['py310']
 exclude = '''
