@@ -4,17 +4,21 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 
+from finance.research.download_market_data import get_stocks_overview
+
 from .forms import PortfolioForm
 from .models import Stocks_overview
 
 
 def index(request: HttpRequest) -> HttpResponse:
     """Render the index page.
+
     Args:
         request (HttpRequest): HTTP request
     Returns:
-        HttpResponse: HTTP response"""
-
+        HttpResponse: HTTP response
+    """
+    get_stocks_overview()
     overview_low = Stocks_overview.objects.all()
     overview_low = overview_low.order_by("change_percentage")[:20]
     overview_high = Stocks_overview.objects.all()
