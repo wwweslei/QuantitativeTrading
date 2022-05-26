@@ -1,66 +1,78 @@
 default_language_version:
-  python: python3.10
+    python: python3.10
 
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.2.0
-    hooks:
-      - id: check-ast
-      - id: trailing-whitespace
-      - id: check-yaml
-      - id: check-builtin-literals
-      - id: check-case-conflict
-      - id: check-docstring-first
-      - id: check-yaml
-      - id: end-of-file-fixer
-      - id: mixed-line-ending
-        args: [--fix=auto]
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v4.2.0
+      hooks:
+          - id: check-ast
+          - id: trailing-whitespace
+          - id: check-yaml
+          - id: check-builtin-literals
+          - id: check-case-conflict
+          - id: check-docstring-first
+          - id: check-yaml
+          - id: end-of-file-fixer
+          - id: mixed-line-ending
+            args: [--fix=auto]
 
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v2.32.1
-    hooks:
-      - id: pyupgrade
-        args: [--py310-plus]
+    - repo: https://github.com/asottile/pyupgrade
+      rev: v2.32.1
+      hooks:
+          - id: pyupgrade
+            args: [--py310-plus]
 
-  - repo: https://github.com/PyCQA/isort
-    rev: 5.10.1
-    hooks:
-      - id: isort
-        args: [--profile, black]
+    - repo: https://github.com/PyCQA/isort
+      rev: 5.10.1
+      hooks:
+          - id: isort
+            args: [--profile, black]
 
-  - repo: https://github.com/psf/black
-    rev: 22.3.0
-    hooks:
-      - id: black
-        args: [--config, ./pyproject.toml]
+    - repo: https://github.com/psf/black
+      rev: 22.3.0
+      hooks:
+          - id: black
+            args: [--config, ./pyproject.toml]
 
-  - repo: https://github.com/pre-commit/mirrors-eslint
-    rev: v8.15.0
-    hooks:
-      - id: eslint
+    - repo: https://github.com/pre-commit/mirrors-eslint
+      rev: v8.15.0
+      hooks:
+          - id: eslint
 
-  - repo: local
-    hooks:
-      - id: update-requirements-txt
-        name: update-requirements-txt
-        description: "Generate requirements.txt based on poetry.lock"
-        entry: poetry
-        args: [export, --format, requirements.txt, --output, requirements.txt]
-        language: system
-        pass_filenames: false
+    - repo: local
+      hooks:
+          - id: update-requirements-txt
+            name: update-requirements-txt
+            description: "Generate requirements.txt based on poetry.lock"
+            entry: poetry
+            args:
+                [export, --format, requirements.txt, --output, requirements.txt]
+            language: system
+            pass_filenames: false
 
+    - repo: local
+      hooks:
+          - id: run pytest
+            name: pytest
+            entry: poetry
+            args: [run, pytest, -vv]
+            pass_filenames: false
+            language: system
 
-  - repo: local
-    hooks:
-      - id: run pytest
-        name: pytest
-        entry: poetry
-        args: [run, pytest, -vv]
-        pass_filenames: false
-        language: system
+    - repo: https://github.com/myint/docformatter
+      rev: v1.4
+      hooks:
+          - id: docformatter
+            args: [--in-place]
 
-  - repo: https://github.com/myint/docformatter
-    rev: v1.4
-    hooks:
-      - id: docformatter
-        args: [--in-place]
+    - repo: local
+      hooks:
+          - id: pylint
+            name: pylint
+            entry: pylint
+            language: system
+            types: [python]
+            args: [
+                    "-rn", # Only display messages
+                    "--rcfile=.pylintrc", # Link to your config file
+                ]

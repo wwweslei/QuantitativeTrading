@@ -1,0 +1,34 @@
+# All error codes
+# http://pylint-messages.wikidot.com/all-codes
+# https://pylint.pycqa.org/en/latest/user_guide/messages/messages_overview.html
+
+
+[MASTER]
+# List of plugins (as comma separated values of python modules names) to load,
+# usually to register additional checkers.
+load-plugins=pylint_django
+django-settings-module=quantitativeTrading.settings
+
+# When enabled, pylint would attempt to guess common misconfiguration and emit
+# user-friendly hints instead of false-positive error messages.
+suggestion-mode=yes
+
+
+[FORMAT]
+# This section contains options related to output format.
+max-line-length=120
+
+
+[MESSAGES CONTROL]
+# Disable the message, report, category or checker with the given id(s). You
+# can either give multiple identifiers separated by comma (,)
+disable=missing-docstring, invalid-name
+
+
+[DESIGN]
+max-parents=13
+# Set the output format. Available formats are text, parseable, colorized, json
+output-format=colorized
+
+[TYPECHECK]
+generated-members=REQUEST,acl_users,aq_parent,"[a-zA-Z]+_set{1,2}",save,delete
