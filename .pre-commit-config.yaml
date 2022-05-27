@@ -8,7 +8,10 @@ repos:
           - id: check-ast
           - id: trailing-whitespace
           - id: check-yaml
+          - id: check-json
+          - id: check-xml
           - id: check-builtin-literals
+          - id: check-merge-conflict
           - id: check-case-conflict
           - id: check-docstring-first
           - id: end-of-file-fixer
@@ -75,3 +78,9 @@ repos:
                     "-rn", # Only display messages
                     "--rcfile=.pylintrc", # Link to your config file
                 ]
+
+    - repo: https://github.com/myint/autoflake
+      rev: 'v1.4'
+      hooks:
+        - id: autoflake
+          args: ['--in-place', '--remove-all-unused-imports', '--remove-unused-variable']
