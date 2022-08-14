@@ -10,8 +10,6 @@ from .models import (
     Portfolio,
     Smal,
     Stocks_overview,
-    TheoreticalIbov,
-    TheoreticalSmall,
     Xfix,
 )
 
@@ -41,18 +39,6 @@ class WalletAdmin(admin.ModelAdmin):
 @admin.register(Stocks_overview)
 class Stocks_overviewAdmin(admin.ModelAdmin):
     search_fields = ["symbol"]
-
-    def has_change_permission(self, request, obj=None):
-        return False
-
-
-@admin.register(TheoreticalIbov)
-@admin.register(TheoreticalSmall)
-class StocksIbovAdmin(admin.ModelAdmin):
-    list_display = ("symbol", "name", "type", "quantity", "percentage")
-    search_fields = ["symbol"]
-    ordering = ["-percentage"]
-    list_filter = ["type"]
 
     def has_change_permission(self, request, obj=None):
         return False

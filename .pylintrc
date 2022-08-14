@@ -22,7 +22,7 @@ max-line-length=120
 [MESSAGES CONTROL]
 # Disable the message, report, category or checker with the given id(s). You
 # can either give multiple identifiers separated by comma (,)
-disable=missing-docstring, invalid-name
+disable=missing-docstring, invalid-name, E5141
 
 
 [DESIGN]
