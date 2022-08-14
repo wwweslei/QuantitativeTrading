@@ -1,34 +1,6 @@
 from django.contrib import admin
-from rangefilter.filters import DateRangeFilter
 
-from .models import (
-    SP_500,
-    Bitcoin,
-    Dollar,
-    Ibovespa,
-    Nasdaq,
-    Portfolio,
-    Smal,
-    Stocks_overview,
-    Xfix,
-)
-
-
-@admin.register(Bitcoin)
-@admin.register(Xfix)
-@admin.register(Smal)
-@admin.register(SP_500)
-@admin.register(Dollar)
-@admin.register(Nasdaq)
-@admin.register(Ibovespa)
-class Register(admin.ModelAdmin):
-    list_display = ("date", "open", "high", "low", "close", "volume")
-    date_hierarchy = "date"
-    search_fields = ["date"]
-    list_filter = [("date", DateRangeFilter), ("date")]
-
-    def has_change_permission(self, request, obj=None):
-        return False
+from .models import Portfolio, Stocks_overview
 
 
 @admin.register(Portfolio)
@@ -38,7 +10,17 @@ class WalletAdmin(admin.ModelAdmin):
 
 @admin.register(Stocks_overview)
 class Stocks_overviewAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "last",
+        "low",
+        "high",
+        "change",
+        "change_percentage",
+        "turnover",
+    )
     search_fields = ["symbol"]
+    ordering = ["-change_percentage"]
 
     def has_change_permission(self, request, obj=None):
         return False
