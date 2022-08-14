@@ -18,6 +18,20 @@ class base(models.Model):
         return self.date.strftime("%d-%m-%Y")
 
 
+class Theoretical(models.Model):
+    symbol = models.TextField(primary_key=True)
+    name = models.TextField(blank=True, null=True)
+    type = models.TextField(blank=True, null=True)
+    quantity = models.TextField(blank=True, null=True)
+    percentage = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return f"{self.name}"
+
+
 class Ibovespa(base, models.Model):
     class Meta:
         db_table = "ibovespa"
@@ -61,19 +75,16 @@ class Nasdaq(base, models.Model):
         verbose_name_plural = "Nasdaq"
 
 
-class StocksIbov(models.Model):
-    symbol = models.TextField(primary_key=True)
-    name = models.TextField(blank=True, null=True)
-    type = models.TextField(blank=True, null=True)
-    quantity = models.TextField(blank=True, null=True)
-    percentage = models.FloatField(blank=True, null=True)
-
+class TheoreticalIbov(Theoretical, models.Model):
     class Meta:
-        db_table = "stocks_ibov"
-        verbose_name_plural = "Stocks Ibovespa"
+        db_table = "theoretical_ibov"
+        verbose_name_plural = "theoretical Ibovespa"
 
-    def __str__(self):
-        return f"{self.name}"
+
+class TheoreticalSmall(Theoretical, models.Model):
+    class Meta:
+        db_table = "theoretical_Small"
+        verbose_name_plural = "theoretical small"
 
 
 class Stocks_br(models.Model):

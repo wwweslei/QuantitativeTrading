@@ -19,21 +19,31 @@ def get_stocks_br() -> None:
     print("updated: get_stocks_br")
 
 
-def get_stocks_ibov() -> None:
-    """get all the assets contained in the ibovespa index and save it in the database."""
-    url = (
-        "http://bvmf.bmfbovespa.com.br/indices/"
-        "ResumoCarteiraTeorica.aspx?Indice=IBOV&amp;idioma=pt-br"
-    )
+def get_theoretical_ibov() -> None:
+    """get all the assets contained in the ibovespa index and save it in the
+    database."""
+    url = "http://bvmf.bmfbovespa.com.br/indices/ResumoCarteiraTeorica.aspx?Indice=IBOV&amp;idioma=pt-br"
     html = pd.read_html(url, decimal=",", thousands=".")[0][:-1]
     df = html.copy()[["Código", "Ação", "Tipo", "Qtde. Teórica", "Part. (%)"]]
     df.columns = ["symbol", "name", "type", "quantity", "percentage"]
-    df.to_sql("stocks_ibov", CONN, if_exists="replace", index=False)
-    print("updated: get_stocks_ibov")
+    df.to_sql("theoretical_ibov", CONN, if_exists="replace", index=False)
+    print("updated: get_theoretical_ibov")
+
+
+def get_theoretical_Small() -> None:
+    """get all the assets contained in the Small index and save it in the
+    database."""
+    url = "http://bvmf.bmfbovespa.com.br/indices/ResumoCarteiraTeorica.aspx?Indice=SMLL&amp;idioma=pt-br"
+    html = pd.read_html(url, decimal=",", thousands=".")[0][:-1]
+    df = html.copy()[["Código", "Ação", "Tipo", "Qtde. Teórica", "Part. (%)"]]
+    df.columns = ["symbol", "name", "type", "quantity", "percentage"]
+    df.to_sql("theoretical_Small", CONN, if_exists="replace", index=False)
+    print("updated: get_theoretical_Small")
 
 
 def get_fiis() -> None:
-    """get all the assets contained in the IFIX index and save it in the database."""
+    """get all the assets contained in the IFIX index and save it in the
+    database."""
     url = (
         "https://www2.bmfbovespa.com.br/Fundos-Listados/"
         "FundosListados.aspx?tipoFundo=imobiliario&Idioma=pt-br"
@@ -47,7 +57,8 @@ def get_fiis() -> None:
 
 
 def get_stocks_overview() -> None:
-    """get Dataframe containing overview all Ibovespa assets and save in database."""
+    """get Dataframe containing overview all Ibovespa assets and save in
+    database."""
     df = inv.get_stocks_overview("brazil", n_results=400)
     df["change_percentage"] = df["change_percentage"].str.replace("%", "").astype(float)
     df.to_sql("stocks_overview", CONN, if_exists="replace", index=False)
@@ -94,7 +105,8 @@ def save() -> None:
 def run_all() -> None:
     """Run all the functions."""
     Thread(target=get_stocks_br).start()
-    Thread(target=get_stocks_ibov).start()
+    Thread(target=get_theoretical_ibov).start()
+    Thread(target=get_theoretical_Small).start()
     Thread(target=get_fiis).start()
     Thread(target=get_stocks_overview).start()
     Thread(target=save).start()
