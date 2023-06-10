@@ -24,7 +24,7 @@
         </script>
         <script type="text/javascript" src="{% static 'core/js/main.js' %}"></script>
         {% compress css inline %}
-        <link rel="stylesheet" type="text/x-sass" href="{% static 'core/css/main.scss' %}?{% now 'U' %}">
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'core/css/main.scss' %}?{% now 'U' %}">
         {% endcompress %}
         <title>
             {% block title %}
