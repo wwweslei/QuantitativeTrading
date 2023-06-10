@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 from pathlib import Path
 
-import django_heroku
 from decouple import Csv, config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -41,11 +40,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "debug_toolbar",
     "compressor",
+    "django_sass_compiler",
     "rangefilter",
     "crispy_forms",
     "crispy_bootstrap5",
     "django_extensions",
-]   
+]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -59,6 +59,7 @@ MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
+
 ROOT_URLCONF = "quantitativeTrading.urls"
 
 INTERNAL_IPS = [
@@ -68,7 +69,7 @@ INTERNAL_IPS = [
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        'DIRS': [str(BASE_DIR.joinpath("templates"))],
+        "DIRS": [str(BASE_DIR.joinpath("templates"))],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -154,17 +155,17 @@ STATIC_ROOT = str(BASE_DIR.joinpath("staticfiles"))
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "sass_processor.finders.CssFinder",
     "compressor.finders.CompressorFinder",
 )
 
 COMPRESS_ENABLED = True  # ou not DEBUG
-COMPRESS_PRECOMPILERS = (("text/x-sass", "sassc {infile} {outfile}"),)
+COMPRESS_PRECOMPILERS = (("text/x-scss", "django_libsass.SassCompiler"),)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-django_heroku.settings(locals())
 
 LOGGING = {
     "version": 1,
