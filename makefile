@@ -39,3 +39,7 @@ co:
 	poetry run python manage.py collectstatic --noinput
 css:
 	poetry run python manage.py sass-compiler
+docker:
+	sudo systemctl start docker
+docker-up:
+	docker compose -f "docker-compose.yml" up -d --build

@@ -30,6 +30,7 @@ beautifulsoup4 = "^4.12.2"
 django-sass-processor = "^1.2.2"
 django-sass-compiler = "^1.1.0"
 django-libsass = "^0.9"
+sgs = "^2.1.1"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -54,6 +55,7 @@ pyopenssl = "^23.2.0"
 pre-commit = "^3.3.2"
 pylint-django = "^2.5.3"
 waitress = "^2.1.2"
+pynvim = "^0.4.3"
 
 
 [build-system]
@@ -70,11 +72,12 @@ addopts = "-ra -q"
 testpaths = [
     "."
 ]
+filterwarnings = "ignore"
 
 # isort.toml
 # https://github.com/PyCQA/isort
 [tool.isort]
-line_length=88
+line_length=120
 multi_line_output=3
 include_trailing_comma=true
 indent='    '
@@ -100,3 +103,23 @@ exclude = '''
     )/
 )
 '''
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+
+[tool.pylint.MASTER]
+load-plugins = "pylint_django"
+django-settings-module="quantitativeTrading.settings"
+suggestion-mode="yes"
+[tool.pylint.messages_control]
+max-line-length = 120
+disable = [
+  "missing-docstring",
+  "line-too-long",
+  "invalid-name",
+  "E5141"
+]
+[tool.pylint.DESIGN]
+max-parents=13
+output-format="colorized"
+
