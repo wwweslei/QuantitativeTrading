@@ -16,6 +16,7 @@ repos:
           - id: check-docstring-first
           - id: end-of-file-fixer
           - id: mixed-line-ending
+          - id: check-executables-have-shebangs
             args: [--fix=auto]
 
 
@@ -25,28 +26,20 @@ repos:
           - id: black
             args: [--config, ./pyproject.toml]
 
+
     - repo: https://github.com/pycqa/isort
       rev: 5.12.0
       hooks:
           - id: isort
-            args: ['--order-by-type', '--length-sort', "--profile", "black", "--filter-files"]
+            args: ['--order-by-type', '--length-sort', "--profile", "black", "--filter-files", --settings-path=pyproject.toml]
             name: isort (python)
+
 
     - repo: https://github.com/pre-commit/mirrors-eslint
       rev: v8.15.0
       hooks:
           - id: eslint
 
-    - repo: local
-      hooks:
-          - id: update-requirements-txt
-            name: update-requirements-txt
-            description: "Generate requirements.txt based on poetry.lock"
-            entry: poetry
-            args:
-                [export, --format, requirements.txt, --output, requirements.txt]
-            language: system
-            pass_filenames: false
 
     - repo: local
       hooks:
@@ -80,3 +73,13 @@ repos:
       hooks:
         - id: autoflake
           args: ['--in-place', '--remove-all-unused-imports', '--remove-unused-variable']
+
+
+    - repo: local
+      hooks:
+        - id: jupyter-nb-clear-output
+          name: jupyter-nb-clear-output
+          files: \.ipynb$
+          stages: [commit]
+          language: system
+          entry: python -m nbconvert --ClearOutputPreprocessor.enabled=True --inplace
