@@ -1,5 +1,5 @@
 default_language_version:
-    python: python3.10
+    python: python3.11.3
 
 repos:
     - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -18,11 +18,6 @@ repos:
           - id: mixed-line-ending
             args: [--fix=auto]
 
-    - repo: https://github.com/asottile/pyupgrade
-      rev: v2.32.1
-      hooks:
-          - id: pyupgrade
-            args: [--py310-plus]
 
     - repo: https://github.com/psf/black
       rev: 22.3.0
@@ -30,11 +25,12 @@ repos:
           - id: black
             args: [--config, ./pyproject.toml]
 
-    - repo: https://github.com/PyCQA/isort
-      rev: 5.10.1
+    - repo: https://github.com/pycqa/isort
+      rev: 5.12.0
       hooks:
           - id: isort
-            args: [--profile, black]
+            args: ['--order-by-type', '--length-sort', "--profile", "black", "--filter-files"]
+            name: isort (python)
 
     - repo: https://github.com/pre-commit/mirrors-eslint
       rev: v8.15.0
@@ -76,7 +72,7 @@ repos:
             types: [python]
             args: [
                     "-rn", # Only display messages
-                    "--rcfile=.pylintrc", # Link to your config file
+                    # "--rcfile=.pylintrc", # Link to your config file
                 ]
 
     - repo: https://github.com/myint/autoflake

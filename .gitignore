@@ -145,3 +145,4 @@ documents/server.csr.key
 postgres.md
 finance/research/data/
 /static/
+requirements.txt

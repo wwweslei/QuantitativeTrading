@@ -5,7 +5,7 @@ from multiprocessing import Pool
 import pandas as pd
 from selenium.webdriver.common.by import By
 
-from finance.research.tools import DOWNLOAD_DIR, get_conn, get_webdriver, save_ticker
+from finance.research.tools import DOWNLOAD_DIR, get_conn, save_ticker, get_webdriver
 
 indexes = [
     "IBOV",  # indice ibovespa",
@@ -48,7 +48,9 @@ def get_index(index: str) -> pd.DataFrame:
     Args:
         index (pd.dataframe): dataframe with index name.
     """
-    URL = f"https://sistemaswebb3-listados.b3.com.br/indexPage/day/{index}?language=pt-br"
+    URL = (
+        f"https://sistemaswebb3-listados.b3.com.br/indexPage/day/{index}?language=pt-br"
+    )
     driver = get_webdriver()
     driver.get(URL)
     driver.find_element(By.ID, "segment").send_keys("Setor de Atuação")
@@ -66,6 +68,7 @@ def download_index():
 
 def csv_to_database(file: str) -> None:
     """Save csv to database.
+
     Args:
         file (str): read csv and save to database.
     """
@@ -86,17 +89,18 @@ def csv_to_database(file: str) -> None:
 
 def save_tickers():
     """Save tickers to database."""
-    for ticker in tickers:
-        save_ticker(tickers[ticker], ticker)
+    for name, ticket in tickers.items():
+        save_ticker(ticket, name)
 
 
 def save():
+    """Save all csv to database in parallel."""
     save_tickers()
     download_index()
-    """Save all csv to database in parallel."""
     with Pool(10) as p:
         p.map(csv_to_database, os.listdir(DOWNLOAD_DIR))
         shutil.rmtree(f"{DOWNLOAD_DIR}/")
+        p.close()
 
 
 if __name__ == "__main__":

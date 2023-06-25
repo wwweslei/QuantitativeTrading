@@ -1,6 +1,8 @@
+from multiprocessing import Pool
+
 import investpy as inv
 
-from finance.research.tools import get_conn
+from finance.research.tools import get_conn, save_ticker
 
 CONN = get_conn()
 
@@ -19,3 +21,11 @@ def get_stocks_overview() -> None:
     df = inv.get_stocks_overview("brazil", n_results=400)
     df["change_percentage"] = df["change_percentage"].str.replace("%", "").astype(float)
     df.to_sql("stocks_overview", CONN, if_exists="replace", index=False)
+
+
+def save_all_tickers() -> None:
+    """get Dataframe containing all Ibovespa assets and save in database."""
+    tickets = inv.get_stocks("brazil")[["symbol"]]["symbol"]
+    args = list(zip(tickets + ".sa", tickets))
+    with Pool(3) as p:
+        p.starmap(save_ticker, args)
