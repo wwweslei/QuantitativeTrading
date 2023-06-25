@@ -1,4 +1,5 @@
 import sgs
+import pandas as pd
 
 # source https://www.bcb.gov.br/estatisticas/indecoreestruturacao
 
@@ -29,8 +30,20 @@ SERVICOS = 22089
 
 # Taxas de juros efetivas
 SELIC = 4189
+SELIC_META = 432
 CDI = 4392
+CDI_OVER = 12
 POUPANCA = 196
 
-ts = sgs.time_serie(PIP, start='02/01/2018', end='31/12/2018')
-print(ts.tail())
+# Reservas internacionais
+RESEVAS_INTERNACIONAIS = 13621  
+
+
+def consulta_bc(codigo_bcb):
+  url = 'http://api.bcb.gov.br/dados/serie/bcdata.sgs.{}/dados?formato=json'.format(codigo_bcb)
+  df = pd.read_json(url)
+  df['data'] = pd.to_datetime(df['data'], dayfirst=True)
+  df.set_index('data', inplace=True)
+  return df
+
+print(consulta_bc(CDI))

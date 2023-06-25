@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 
-from finance.research.download_market_data import get_stocks_overview
+from finance.research.stock import get_stocks_overview
 
 from .forms import PortfolioForm
 from .models import Stocks_overview

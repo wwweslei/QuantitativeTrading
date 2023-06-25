@@ -31,6 +31,7 @@ django-sass-processor = "^1.2.2"
 django-sass-compiler = "^1.1.0"
 django-libsass = "^0.9"
 sgs = "^2.1.1"
+selenium = "^4.10.0"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -108,17 +109,22 @@ venvPath = "."
 venv = ".venv"
 
 [tool.pylint.MASTER]
-load-plugins = "pylint_django"
-django-settings-module="quantitativeTrading.settings"
+init-hook='import sys; sys.path.append(".")'
+ignore="templates, static"
+django-settings-module = "quantitativeTrading.settings"
+load-plugins="pylint_django"
 suggestion-mode="yes"
+
 [tool.pylint.messages_control]
 max-line-length = 120
 disable = [
   "missing-docstring",
   "line-too-long",
   "invalid-name",
-  "E5141"
 ]
+[tool.pylint.format]
+max-line-length = 120
+
 [tool.pylint.DESIGN]
 max-parents=13
 output-format="colorized"
