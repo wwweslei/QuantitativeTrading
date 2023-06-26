@@ -3,7 +3,7 @@ import shutil
 import pandas as pd
 from selenium.webdriver.common.by import By
 
-from finance.research.tools import DOWNLOAD_DIR, get_conn, get_webdriver
+from finance.research.tools import DOWNLOAD_DIR, get_webdriver, get_connection
 
 
 def get_index() -> pd.DataFrame:
@@ -15,18 +15,21 @@ def get_index() -> pd.DataFrame:
     driver = get_webdriver()
     driver.get("https://sistemaswebb3-listados.b3.com.br/fundsPage/20")
     driver.implicitly_wait(1)
-    driver.find_element(By.LINK_TEXT, "Exportar lista completa de Fundos em CSV").click()
+    driver.find_element(
+        By.LINK_TEXT, "Exportar lista completa de Fundos em CSV"
+    ).click()
     driver.quit()
-    print(f"Downloading etfs")
+    print("Downloading etfs")
 
 
 def save() -> None:
     """Save csv to database.
+
     Args:
         file (str): read csv and save to database.
     """
     get_index()
-    CONN = get_conn()
+    CONN = get_connection()
     df = pd.read_csv(
         f"{DOWNLOAD_DIR}/fundosListados.csv",
         sep=";",

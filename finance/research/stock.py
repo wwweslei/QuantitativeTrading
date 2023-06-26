@@ -2,9 +2,9 @@ from multiprocessing import Pool
 
 import investpy as inv
 
-from finance.research.tools import get_conn, save_ticker
+from finance.research.tools import save_ticker, get_connection
 
-CONN = get_conn()
+CONN = get_connection()
 
 
 def save() -> None:

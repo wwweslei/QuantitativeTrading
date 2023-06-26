@@ -129,3 +129,5 @@ max-line-length = 120
 max-parents=13
 output-format="colorized"
 
+[tool.pylint.TYPECHECK]
+generated-members="pandas.*" #REQUEST,acl_users,aq_parent,

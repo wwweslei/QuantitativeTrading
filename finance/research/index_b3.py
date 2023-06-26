@@ -5,7 +5,7 @@ from multiprocessing import Pool
 import pandas as pd
 from selenium.webdriver.common.by import By
 
-from finance.research.tools import DOWNLOAD_DIR, get_conn, save_ticker, get_webdriver
+from finance.research.tools import DOWNLOAD_DIR, save_ticker, get_webdriver, get_connection
 
 indexes = [
     "IBOV",  # indice ibovespa",
@@ -72,7 +72,7 @@ def csv_to_database(file: str) -> None:
     Args:
         file (str): read csv and save to database.
     """
-    CONN = get_conn()
+    CONN = get_connection()
     df = pd.read_csv(
         f"{DOWNLOAD_DIR}/{file}",
         sep=";",

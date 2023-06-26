@@ -4,11 +4,11 @@ from pathlib import Path
 from sqlalchemy import inspect
 
 from finance.research import index_b3
-from finance.research.tools import DOWNLOAD_DIR, get_conn
+from finance.research.tools import DOWNLOAD_DIR, get_connection
 
 
-def setup_module(module):
-    """setup for module"""
+def setup_module():
+    """setup for module."""
     index_b3.get_index("IBOV")
 
 
@@ -17,7 +17,7 @@ def test_if_file_env_exists():
 
 
 def test_connection():
-    assert get_conn()
+    assert get_connection()
 
 
 def test_webdriver_firefox_and_config():
@@ -34,4 +34,4 @@ def test_get_index_have_csv_file():
 
 
 def test_db_table_exists():
-    assert "IBOV" in inspect(get_conn()).get_table_names()
+    assert "IBOV" in inspect(get_connection()).get_table_names()
