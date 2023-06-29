@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from finance.research import etf, fii, sgs, stock, index_b3, direct_treasure
+from finance.research import direct_treasure, etf, fii, index_b3, sgs, stock
 
 
 class Command(BaseCommand):
@@ -24,8 +24,8 @@ class Command(BaseCommand):
         elif cod == "fii":
             fii.save()
         elif cod == "stock":
+            stock.save_list()
             stock.save()
-            stock.save_all_tickers()
         elif cod == "sgs":
             sgs.save()
         elif cod == "all":
@@ -33,6 +33,8 @@ class Command(BaseCommand):
             index_b3.save()
             direct_treasure.save()
             fii.save()
+            sgs.save()
+            stock.save()
         else:
             self.stdout.write(self.style.ERROR("Invalid cod"))
         self.stdout.write(self.style.SUCCESS("Successfully saved data"))

@@ -43,3 +43,5 @@ docker:
 	sudo systemctl start docker
 docker-up:
 	docker compose -f "docker-compose.yml" up -d --build
+db:
+	pgcli postgres://postgres:fdjk@localhost:5432/quantitativeTrading

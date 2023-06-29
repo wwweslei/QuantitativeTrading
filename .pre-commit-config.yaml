@@ -31,9 +31,8 @@ repos:
       rev: 5.12.0
       hooks:
           - id: isort
-            args: ['--order-by-type', '--length-sort', "--profile", "black", "--filter-files", --settings-path=pyproject.toml]
+            args: ["--profile", "black", --settings-path=pyproject.toml]
             name: isort (python)
-
 
     - repo: https://github.com/pre-commit/mirrors-eslint
       rev: v8.15.0

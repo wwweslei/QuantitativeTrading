@@ -3,7 +3,7 @@ import shutil
 import pandas as pd
 from selenium.webdriver.common.by import By
 
-from finance.research.tools import DOWNLOAD_DIR, get_webdriver, get_connection
+from finance.research.tools import DOWNLOAD_DIR, get_connection, get_webdriver
 
 
 def get_index() -> pd.DataFrame:
@@ -19,7 +19,7 @@ def get_index() -> pd.DataFrame:
         By.LINK_TEXT, "Exportar lista completa de Fundos em CSV"
     ).click()
     driver.quit()
-    print("Downloading etfs")
+    print("Downloading etfs list")
 
 
 def save() -> None:
@@ -39,6 +39,7 @@ def save() -> None:
     )
     df["Código"] = df["Código"] + "11"
     df.to_sql("ETF_LIST", CONN, if_exists="replace", index=False)
+    print("Update ETF_LIST")
     shutil.rmtree(f"{DOWNLOAD_DIR}/")
 
 

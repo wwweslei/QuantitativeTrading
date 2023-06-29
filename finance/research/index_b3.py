@@ -5,7 +5,12 @@ from multiprocessing import Pool
 import pandas as pd
 from selenium.webdriver.common.by import By
 
-from finance.research.tools import DOWNLOAD_DIR, save_ticker, get_webdriver, get_connection
+from finance.research.tools import (
+    DOWNLOAD_DIR,
+    get_connection,
+    get_webdriver,
+    save_ticker,
+)
 
 indexes = [
     "IBOV",  # indice ibovespa",
@@ -84,6 +89,7 @@ def csv_to_database(file: str) -> None:
         header=1,
         index_col=False,
     )
+    df.columns = df.columns.str.replace(". (%)", "")
     df.to_sql(file[:4], CONN, if_exists="replace", index=False)
 
 

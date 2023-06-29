@@ -6,7 +6,6 @@ from django.shortcuts import redirect, render
 
 from finance.research.stock import get_stocks_overview
 
-from .forms import PortfolioForm
 from .models import Stocks_overview
 
 
@@ -57,19 +56,3 @@ def signup(request: HttpRequest) -> HttpResponse:
             return redirect("home:index")
     form = UserCreationForm()
     return render(request, "registration/signup.html", {"form": form})
-
-
-@login_required
-def form_portfolio(request: HttpRequest) -> HttpResponse:
-    """Render the form to create a portfolio."""
-    if request.method == "POST":
-        form = PortfolioForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("profile")
-    form = PortfolioForm()
-    return render(
-        request,
-        "core/includes/form_portfolio.html",
-        {"title": "Portfolio", "form": form},
-    )

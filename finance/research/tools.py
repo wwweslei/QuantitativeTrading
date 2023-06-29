@@ -3,8 +3,8 @@ from pathlib import Path
 import yfinance as yf
 from decouple import config
 from selenium import webdriver
-from sqlalchemy import create_engine
 from selenium.webdriver.firefox.options import Options
+from sqlalchemy import create_engine
 
 DOWNLOAD_DIR = str(Path(__file__).resolve().parent.joinpath("data"))
 
@@ -45,4 +45,4 @@ def save_ticker(ticket: str, name: str) -> None:
     df.index.rename("date", inplace=True)
     df = df.iloc[::-1]
     df.to_sql(name, get_connection(), if_exists="replace")
-    print(f"Downloading {name} ticker")
+    print(f"Update {name} ticker")

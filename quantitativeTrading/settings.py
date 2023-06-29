@@ -10,7 +10,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 from pathlib import Path
 
-
 from decouple import Csv, config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,8 +25,11 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = config("DEBUG", default=False, cast=bool)
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", default=[], cast=Csv())
-
 # Application definition
+
+# Shell configuration
+SHELL_PLUS = "bpython"
+SHELL_PLUS_PRINT_SQL = True
 
 INSTALLED_APPS = [
     "core.apps.CoreConfig",

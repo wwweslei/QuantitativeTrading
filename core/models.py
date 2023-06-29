@@ -1,22 +1,6 @@
 from django.db import models
 
 
-class Portfolio(models.Model):
-    user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
-    date = models.DateField()
-    symbol = models.CharField(max_length=10)
-    value = models.FloatField()
-    total_value = models.FloatField()
-    qtd = models.IntegerField()
-
-    class Meta:
-        db_table = "portfolio"
-        verbose_name_plural = "portfolio"
-
-    def __str__(self):
-        return f"{self.user} {self.symbol}"
-
-
 class Stocks_overview(models.Model):
     country = models.TextField()
     name = models.TextField()

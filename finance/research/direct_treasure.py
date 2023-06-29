@@ -54,6 +54,7 @@ def save():
         unique_treasury.to_sql(
             treasury_type, get_connection(), if_exists="replace", index=False
         )
+        print("Update", treasury_type)
 
 
 if __name__ == "__main__":
