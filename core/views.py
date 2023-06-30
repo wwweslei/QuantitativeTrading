@@ -1,23 +1,14 @@
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 
-from finance.research.stock import get_stocks_overview
-
-from .models import Stocks_overview
+from finance.models import Stocks_overview
 
 
 def index(request: HttpRequest) -> HttpResponse:
-    """Render the index page.
-
-    Args:
-        request (HttpRequest): HTTP request
-    Returns:
-        HttpResponse: HTTP response
-    """
-    get_stocks_overview()
+    """Render the index page."""
+    # get_stocks_overview()
     overview_low = Stocks_overview.objects.all()
     overview_low = overview_low.order_by("change_percentage")[:25]
     overview_high = Stocks_overview.objects.all()
@@ -48,11 +39,20 @@ def profile(request: HttpRequest) -> HttpResponse:
 
 def signup(request: HttpRequest) -> HttpResponse:
     """Render the register page."""
+    msg = None
+    success = False
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Conta criada com sucesso!")
-            return redirect("home:index")
-    form = UserCreationForm()
-    return render(request, "registration/signup.html", {"form": form})
+            msg = "Usuário criado com sucesso."
+            success = True
+        else:
+            msg = "Formulario invalido\ntente novamente."
+    else:
+        form = UserCreationForm()
+    return render(
+        request,
+        "registration/signup.html",
+        {"form": form, "msg": msg, "success": success},
+    )

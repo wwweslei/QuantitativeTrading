@@ -7,32 +7,51 @@
     <section class="position-absolute top-50 start-50 translate-middle">
         <div class="card shadow-lg c-card--registration">
             <div class="card-body p-5">
-                {% if messages %}
-                    <ul>
-                        {% for message in messages %}
-                            <li>
-                                <h1 class="fs-4 fw-bold mb-4">{{ message }}</h1>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-                <h1 class="fs-4 card-title fw-bold mb-4">Conta Trading</h1>
-                {% load crispy_forms_tags %}
-                <form method="post">
-                    {% csrf_token %} {{ form|crispy }}
-                    <div class="d-flex flex-row-reverse">
-                        <div class="form-check">
-                            <button type="submit" class="btn btn-card ms-auto">Enviar</button>
+                <h5 class="card-category">
+                    {% if msg %}<span class="text-danger fs-5 ">{{ msg | safe }}</span>{% endif %}
+                </h5>
+                {% if success %}
+
+                            <div class="card-body p-5">
+                                <div class="login-success fs-4 card-title fw-bold mb-4">
+                                    <a href="{% url 'login' %}" class="text-center">autentique-se</a>
+                                </div>
+                                <div class="card-footer py-3 border-0">
+                                    <div class="text-center">
+                                        Use a nova conta!
+                                        <a href="{% url 'login' %}">Login</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                    {% if messages %}
+                        <ul>
+                            {% for message in messages %}
+                                <li>
+                                    <h1 class="fs-4 fw-bold mb-4">{{ message }}</h1>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% else %}
+                    <h1 class="fs-4 card-title fw-bold mb-4">Conta Trading</h1>
+                    {% load crispy_forms_tags %}
+                    <form method="post">
+                        {% csrf_token %} {{ form|crispy }}
+                        <div class="d-flex flex-row-reverse">
+                            <div class="form-check">
+                                <button type="submit" class="btn btn-card ms-auto">Enviar</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-            <div class="card-footer py-3 border-0">
-                <div class="text-center">
-                    Não tem uma conta?
-                    <a href="{% url 'signup' %}">Crie uma</a>
+                    </form>
                 </div>
-            </div>
+                <div class="card-footer py-3 border-0">
+                    <div class="text-center">
+                        Não tem uma conta?
+                        <a href="{% url 'signup' %}">Crie uma</a>
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </section>
 {% endblock main %}
