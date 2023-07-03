@@ -4957,7 +4957,7 @@ class Fiip11B(models.Model):
 
 
 class FiiList(models.Model):
-    symbol = models.TextField(blank=True, null=True)
+    symbol = models.TextField(primary_key=True)
     name = models.TextField(blank=True, null=True)
     full_name = models.TextField(blank=True, null=True)
 
@@ -11642,7 +11642,7 @@ class Stbp3(models.Model):
 
 
 class StockList(models.Model):
-    symbol = models.TextField(blank=True, null=True)
+    symbol = models.TextField(primary_key=True)
     name = models.TextField(blank=True, null=True)
     full_name = models.TextField(blank=True, null=True)
     isin = models.TextField(blank=True, null=True)

@@ -1,15 +1,14 @@
 {% extends 'core/layouts/base.html' %}
-
 {% block title %}
-    {{title.title}}
+    {{ title.title }}
 {% endblock title %}
-
 {% block header %}
-{%include 'core/includes/navbar.html'%}
+    {% include 'core/includes/navbar.html' %}
 {% endblock header %}
+{% block main %}
+    <main class="l-main">
+        {% include 'core/includes/widget_tradingView.html' %}
 
-
-{% block main%}
-<main class="l-main">
-    {% include 'core/includes/widget_tradingView.html'%}
-{% endblock main %}
+        <h1><a href="{% url 'portifolio_user_form' %}"> add ativo </a></h1>
+    </main>
+    {% endblock main %}

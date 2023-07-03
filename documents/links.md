@@ -11,3 +11,8 @@
 - [https://www.tesourotransparente.gov.br/ckan/dataset]
 
 - [https://github.com/codigoquant/python_para_investimentos/blob/master/20_Tesouro_Direto_com_Python.ipynb]
+
+- [https://pypi.org/project/django-seed/]
+
+
+python manage.py sqlmigrate

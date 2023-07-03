@@ -1,0 +1,34 @@
+{% extends 'core/layouts/base.html' %}
+{% load static %}
+{% block title %}
+    {{'accounts' }}
+{% endblock title %}
+{% block header %}
+    {% include 'core/includes/navbar.html' %}
+{% endblock header %}
+{% block main %}
+    <section class="position-absolute top-50 start-50 translate-middle">
+        <div class="card shadow-lg c-card--registration">
+            <div class="card-body p-5">
+                <h1 class="fs-4 card-title fw-bold mb-4">Incluir ativo</h1>
+                {% load crispy_forms_tags %}
+                <form method="post">
+                    {% csrf_token %} {{ form|crispy }}
+                    <div class="d-flex align-items-center ">
+                        <div class="form-check">
+                            <a href="#">consultar lista de ativos</a>
+                        </div>
+                        <div class="form-check">
+                            <button type="submit" class="btn btn-card ms-auto">Salvar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer py-3 border-0">
+                <div class="text-center">
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock main %}

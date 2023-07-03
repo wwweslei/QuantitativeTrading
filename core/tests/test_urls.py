@@ -26,14 +26,14 @@ def test_admin_authorized(admin_client: Client) -> None:
 
 def test_admin_docs_unauthorized(client: Client) -> None:
     """This test ensures that admin panel docs requires auth."""
-    response = client.get("/admin/dollar/")
+    response = client.get("/admin/")
 
     assert response.status_code == 302
 
 
-# def test_admin_docs_authorized(admin_client: Client) -> None:
-#     """This test ensures that admin panel docs are accessible."""
-#     response = admin_client.get('/admin/core/')
+def test_admin_docs_authorized(admin_client: Client) -> None:
+    """This test ensures that admin panel docs are accessible."""
+    response = admin_client.get("/admin/core/")
 
-#     assert response.status_code == 200
-#     assert b'docutils' not in response.content  # type: ignore
+    assert response.status_code == 200
+    assert b"docutils" not in response.content  # type: ignore

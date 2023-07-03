@@ -146,3 +146,6 @@ postgres.md
 finance/research/data/
 /static/
 requirements.txt
+documents/doc/
+postgres.session.sql
+finance/migrations/

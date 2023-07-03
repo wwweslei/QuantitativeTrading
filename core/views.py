@@ -1,8 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
+from core.forms import PortifolioUserForm
+from core.models import PortifolioUser
 from finance.models import Stocks_overview
 
 
@@ -55,4 +57,27 @@ def signup(request: HttpRequest) -> HttpResponse:
         request,
         "registration/signup.html",
         {"form": form, "msg": msg, "success": success},
+    )
+
+
+def portifolio_user_form(request: HttpRequest) -> HttpResponse:
+    """Render the form page."""
+
+    portifolio_user = PortifolioUser()
+    form = PortifolioUserForm()
+    if request.method == "POST":
+        form = PortifolioUserForm(request.POST)
+        if form.is_valid():
+            portifolio_user.user_id = request.user.id
+            portifolio_user.type = form.cleaned_data["type"]
+            portifolio_user.cod = form.cleaned_data["cod"]
+            portifolio_user.quantity = form.cleaned_data["quantity"]
+            portifolio_user.price = form.cleaned_data["price"]
+            portifolio_user.date = form.cleaned_data["date"]
+            portifolio_user.save()
+            return redirect("/accounts/profile/")
+    return render(
+        request,
+        "core/profile/portifolio_user_form.html",
+        {"form": form},
     )

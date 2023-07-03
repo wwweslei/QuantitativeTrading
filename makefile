@@ -15,8 +15,9 @@ user:
 h_user:
 	heroku run python manage.py createsuperuser
 migrate:
-	poetry run python manage.py makemigrations core
-	poetry run python manage.py migrate core
+	poetry run python manage.py makemigrations
+	poetry run python manage.py migrate
+	python manage.py migrate --run-syncdb
 
 h_migrate:
 	heroku run python manage.py makemigrations core
