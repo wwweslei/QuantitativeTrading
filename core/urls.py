@@ -1,6 +1,6 @@
 from django.urls import include, path
 
-from . import views
+from . import graph, views
 
 urlpatterns = [
     path("", views.index, name="index"),
@@ -12,4 +12,6 @@ urlpatterns = [
         name="portifolio_user_form",
     ),
     path("accounts/signup/", views.signup, name="signup"),
+    path("showimageIPCA/", graph.showimageIPCA, name="showimageIPCA"),
+    path("showimagePrefixado/", graph.showimagePrefixado, name="showimagePrefixado"),
 ]

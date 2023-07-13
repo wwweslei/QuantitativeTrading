@@ -32,6 +32,9 @@ sgs = "^2.1.1"
 selenium = "^4.10.0"
 django = "^4.2.2"
 pre-commit = "^3.3.3"
+seaborn = "^0.12.2"
+mplfinance = "^0.12.9b7"
+ta = "^0.10.2"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -123,9 +126,12 @@ disable = [
   "invalid-name",
   "too-many-lines",
   "non-ascii-name",
-  "ungrouped-imports"
-
+  "ungrouped-imports",
+  "wrong-import-position",
+  "wrong-import-order",
+  "expression-not-assigned"
 ]
+
 [tool.pylint.format]
 max-line-length = 120
 

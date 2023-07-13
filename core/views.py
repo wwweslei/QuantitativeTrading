@@ -11,10 +11,9 @@ from finance.models import Stocks_overview
 def index(request: HttpRequest) -> HttpResponse:
     """Render the index page."""
     # get_stocks_overview()
-    overview_low = Stocks_overview.objects.all()
-    overview_low = overview_low.order_by("change_percentage")[:25]
-    overview_high = Stocks_overview.objects.all()
-    overview_high = overview_high.order_by("-change_percentage")[:25]
+    overview = Stocks_overview.objects.all()
+    overview_low = overview.order_by("change_percentage")[:25]
+    overview_high = overview.order_by("-change_percentage")[:25]
     return render(
         request,
         "core/home/index.html",

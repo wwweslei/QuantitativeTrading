@@ -1,18 +1,25 @@
-{% extends 'core/layouts/base.html' %}
-
+{% extends "core/layouts/base.html" %}
 {% block title %}
-    {{title.title}}
+    {{ title.title }}
 {% endblock title %}
-
 {% block header %}
-{%include 'core/includes/navbar.html'%}
+    {% include "core/includes/navbar.html" %}
 {% endblock header %}
-
-
-{% block main%}
-<main class="l-main">
-    {% include 'core/includes/widget_tradingView.html'%}
-    {% include 'core/includes/table.html'%}
-</main>
+{% block main %}
+    <main class="l-main">
+        {% include "core/includes/widget_tradingView.html" %}
+        {% include "core/includes/table.html" %}
+        <div class="graph-box">
+            <img src="{% url "showimageIPCA" %}"
+                 class="ipca-png"
+                 alt="lineplot IPC-A"
+                 width=""
+                 height="">
+            <img src="{% url "showimagePrefixado" %}"
+                 class="ipca-png"
+                 alt="lineplot Prefixados"
+                 width=""
+                 height="">
+        </div>
+    </main>
 {% endblock main %}
-
