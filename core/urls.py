@@ -14,4 +14,5 @@ urlpatterns = [
     path("accounts/signup/", views.signup, name="signup"),
     path("showimageIPCA/", graph.showimageIPCA, name="showimageIPCA"),
     path("showimagePrefixado/", graph.showimagePrefixado, name="showimagePrefixado"),
+    path("showimageSelic/", graph.showimageSelic, name="showimageSelic"),
 ]
