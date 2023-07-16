@@ -1,0 +1,63 @@
+{% extends "core/layouts/base.html" %}
+{% load static %}
+{% block title %}
+    {{ title.title }}
+{% endblock title %}
+{% block header %}
+    {% include "core/includes/navbar.html" %}
+{% endblock header %}
+{% block main %}
+    <main class="l-main">
+        <div class="graph-box">
+            <img src="{% static 'core/img/tesouro_ipca.svg' %}"
+                 class="base-svgs"
+                 alt="lineplot Prefixados"
+                 width="650"
+                 height="480">
+            <img src="{% static 'core/img/tesouro_prefixado.svg' %}"
+                 class="base-svgs"
+                 alt="lineplot Prefixados"
+                 width="650"
+                 height="480">
+            <img src="{% static 'core/img/tesouro_selic.svg' %}"
+                 class="base-svgs"
+                 alt="lineplot Prefixados"
+                 width="650"
+                 height="480">
+        </div>
+        <div class="graph-box">
+            <img src="{% static 'core/img/tesouro_ipca_monthly.svg' %}"
+                 class="base-svgs"
+                 alt="lineplot Prefixados"
+                 width="650"
+                 height="480">
+            <img src="{% static 'core/img/tesouro_pre_monthly.svg' %}"
+                 class="base-svgs"
+                 alt="lineplot Prefixados"
+                 width="650"
+                 height="480">
+            <img src="{% static 'core/img/tesouro_selic_monthly.svg' %}"
+                 class="base-svgs"
+                 alt="lineplot Prefixados"
+                 width="650"
+                 height="480">
+        </div>
+        <div class="graph-box">
+            <img src="{% static 'core/img/tesouro_ipca_weekly.svg' %}"
+                 class="base-svgs"
+                 alt="lineplot Prefixados"
+                 width="650"
+                 height="480">
+            <img src="{% static 'core/img/tesouro_pre_weekly.svg' %}"
+                 class="base-svgs"
+                 alt="lineplot Prefixados"
+                 width="650"
+                 height="480">
+            <img src="{% static 'core/img/tesouro_selic_weekly.svg' %}"
+                 class="base-svgs"
+                 alt="lineplot Prefixados"
+                 width="650"
+                 height="480">
+        </div>
+    </main>
+{% endblock main %}
