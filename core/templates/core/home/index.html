@@ -9,22 +9,5 @@
     <main class="l-main">
         {% include "core/includes/widget_tradingView.html" %}
         {% include "core/includes/table.html" %}
-        <div class="graph-box">
-            <img src="{% url "showimageIPCA" %}"
-                 class="ipca-png"
-                 alt="lineplot IPC-A"
-                 width=""
-                 height="">
-            <img src="{% url "showimagePrefixado" %}"
-                 class="ipca-png"
-                 alt="lineplot Prefixados"
-                 width=""
-                 height="">
-            <img src="{% url "showimageSelic" %}"
-                 class="ipca-png"
-                 alt="lineplot Prefixados"
-                 width=""
-                 height="">
-        </div>
     </main>
 {% endblock main %}

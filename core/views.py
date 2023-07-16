@@ -4,6 +4,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 
 from core.forms import PortifolioUserForm
+from core.graph import treasure_graph
 from core.models import PortifolioUser
 from finance.models import Stocks_overview
 
@@ -21,6 +22,18 @@ def index(request: HttpRequest) -> HttpResponse:
             "title": "Home",
             "overview_high": overview_high,
             "overview_low": overview_low,
+        },
+    )
+
+
+def treasure(request: HttpRequest) -> HttpResponse:
+    """Render the index page."""
+    treasure_graph()
+    return render(
+        request,
+        "core/home/treasure.html",
+        {
+            "title": "Tesouro Direto",
         },
     )
 

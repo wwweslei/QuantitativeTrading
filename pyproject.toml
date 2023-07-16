@@ -141,3 +141,7 @@ output-format="colorized"
 
 [tool.pylint.TYPECHECK]
 generated-members="pandas.*" #REQUEST,acl_users,aq_parent,
+
+[tool.black]
+line-length = 120
+target_version = ['py310']
