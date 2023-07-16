@@ -32,6 +32,9 @@ sgs = "^2.1.1"
 selenium = "^4.10.0"
 django = "^4.2.2"
 pre-commit = "^3.3.3"
+seaborn = "^0.12.2"
+mplfinance = "^0.12.9b7"
+ta = "^0.10.2"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -82,11 +85,14 @@ filterwarnings = "ignore"
 # https://github.com/PyCQA/isort
 [tool.isort]
 profile = "black"
+line_length = 120
 
 # flake8.toml
 # https://flake8.pycqa.org/en/latest/user/configuration.html
 [tool.flake8]
+ignore = "501"
 max-line-length = 120
+max-complexity = 10
 target_version = ['py310']
 exclude = '''
 (
@@ -123,9 +129,12 @@ disable = [
   "invalid-name",
   "too-many-lines",
   "non-ascii-name",
-  "ungrouped-imports"
-
+  "ungrouped-imports",
+  "wrong-import-position",
+  "wrong-import-order",
+  "expression-not-assigned"
 ]
+
 [tool.pylint.format]
 max-line-length = 120
 
@@ -135,3 +144,11 @@ output-format="colorized"
 
 [tool.pylint.TYPECHECK]
 generated-members="pandas.*" #REQUEST,acl_users,aq_parent,
+
+[tool.black]
+line-length = 120
+target_version = ['py310']
+
+[tool.djlint]
+profile="django"
+ignore = "H006,H031"

@@ -16,19 +16,26 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         cod = kwargs["cod"]
         if cod == "etf":
+            self.stdout.write(self.style.SUCCESS("Saving etf data"))
             etf.save()
         elif cod == "index":
+            self.stdout.write(self.style.SUCCESS("Saving index data"))
             index_b3.save()
         elif cod == "treasure":
+            self.stdout.write(self.style.SUCCESS("Saving treasure data"))
             direct_treasure.save()
         elif cod == "fii":
+            self.stdout.write(self.style.SUCCESS("Saving fii data"))
             fii.save()
         elif cod == "stock":
+            self.stdout.write(self.style.SUCCESS("Saving stock data"))
             stock.save_list()
             stock.save()
         elif cod == "sgs":
+            self.stdout.write(self.style.SUCCESS("Saving sgs data"))
             sgs.save()
         elif cod == "all":
+            self.stdout.write(self.style.SUCCESS("Saving all data"))
             etf.save()
             index_b3.save()
             direct_treasure.save()

@@ -12597,7 +12597,7 @@ class TesouroIgpmComJurosSemestrais(models.Model):
         db_column="Data Vencimento", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
     data_base = models.DateField(
-        db_column="Data Base", blank=True, null=True
+        db_column="Data Base", primary_key=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
     taxa_compra_manha = models.FloatField(
         db_column="Taxa Compra Manha", blank=True, null=True
@@ -12625,7 +12625,7 @@ class TesouroIpca(models.Model):
         db_column="Data Vencimento", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
     data_base = models.DateField(
-        db_column="Data Base", blank=True, null=True
+        db_column="Data Base", primary_key=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
     taxa_compra_manha = models.FloatField(
         db_column="Taxa Compra Manha", blank=True, null=True
@@ -12653,7 +12653,7 @@ class TesouroIpcaComJurosSemestrais(models.Model):
         db_column="Data Vencimento", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
     data_base = models.DateField(
-        db_column="Data Base", blank=True, null=True
+        db_column="Data Base", primary_key=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
     taxa_compra_manha = models.FloatField(
         db_column="Taxa Compra Manha", blank=True, null=True
@@ -12681,7 +12681,7 @@ class TesouroPrefixado(models.Model):
         db_column="Data Vencimento", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
     data_base = models.DateField(
-        db_column="Data Base", blank=True, null=True
+        db_column="Data Base", primary_key=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
     taxa_compra_manha = models.FloatField(
         db_column="Taxa Compra Manha", blank=True, null=True
@@ -12709,7 +12709,7 @@ class TesouroPrefixadoComJurosSemestrais(models.Model):
         db_column="Data Vencimento", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
     data_base = models.DateField(
-        db_column="Data Base", blank=True, null=True
+        db_column="Data Base", primary_key=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
     taxa_compra_manha = models.FloatField(
         db_column="Taxa Compra Manha", blank=True, null=True
@@ -12737,7 +12737,7 @@ class TesouroRendaAposentadoriaExtra(models.Model):
         db_column="Data Vencimento", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
     data_base = models.DateField(
-        db_column="Data Base", blank=True, null=True
+        db_column="Data Base", primary_key=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
     taxa_compra_manha = models.FloatField(
         db_column="Taxa Compra Manha", blank=True, null=True
@@ -12765,7 +12765,7 @@ class TesouroSelic(models.Model):
         db_column="Data Vencimento", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
     data_base = models.DateField(
-        db_column="Data Base", blank=True, null=True
+        db_column="Data Base", primary_key=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
     taxa_compra_manha = models.FloatField(
         db_column="Taxa Compra Manha", blank=True, null=True
