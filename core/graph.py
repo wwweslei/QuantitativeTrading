@@ -3,9 +3,6 @@ from datetime import date, datetime
 from multiprocessing import Process
 
 import matplotlib
-
-matplotlib.use("svg")
-
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -13,7 +10,8 @@ import seaborn as sns
 
 from finance.models import TesouroIpca, TesouroPrefixado, TesouroSelic
 
-sns.set_theme(style="whitegrid", palette="muted", font_scale=0.8)
+matplotlib.use("svg")
+sns.set_theme(style="whitegrid", palette="muted", font_scale=1)
 locale.setlocale(locale.LC_ALL, "pt_BR.UTF-8")
 
 

@@ -1,2 +1,4 @@
 # QuantitativeTrading
-Quantitative trading Implement a portfolio management system and create investment models.
+
+Quantitative trading Implement a portfolio management system
+and create investment models.
