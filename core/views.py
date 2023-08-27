@@ -5,6 +5,7 @@ from django.shortcuts import redirect, render
 
 from core.forms import PortifolioUserForm
 from core.graph import treasure_graph
+from core.graph_di import graph_di
 from core.models import PortifolioUser
 from finance.models import Stocks_overview
 
@@ -34,6 +35,18 @@ def treasure(request: HttpRequest) -> HttpResponse:
         "core/home/treasure.html",
         {
             "title": "Tesouro Direto",
+        },
+    )
+
+
+def di(request: HttpRequest) -> HttpResponse:
+    """Render the index page."""
+    graph_di()
+    return render(
+        request,
+        "core/home/di.html",
+        {
+            "title": "DI",
         },
     )
 

@@ -1,0 +1,32 @@
+{% extends "core/layouts/base.html" %}
+{% load static %}
+{% block title %}
+    {{ title.title }}
+{% endblock title %}
+{% block header %}
+    {% include "core/includes/navbar.html" %}
+{% endblock header %}
+{% block main %}
+    <div class="graph-box">
+        <img src="{% static 'core/img/ettj.svg' %}"
+             class="base-svgs"
+             alt="Tesouro Ipca" />
+        <img src="{% static 'core/img/ettj_day_360.svg' %}"
+             class="base-svgs"
+             alt="Tesouro Prefixado" />
+        <img src="{% static 'core/img/ettj_day.svg' %}"
+             class="base-svgs"
+             alt="Tesouro Selic" />
+    </div>
+    <div class="graph-box">
+        <img src="{% static 'core/img/ettj_week.svg' %}"
+             class="base-svgs"
+             alt="Tesouro Ipca monthly" />
+        <img src="{% static 'core/img/ettj_month.svg' %}"
+             class="base-svgs"
+             alt="Tesouro Pre monthly" />
+        <img src="{% static 'core/img/ettj_day.svg' %}"
+             class="base-svgs"
+             alt="Tesouro Selic monthly" />
+    </div>
+{% endblock main %}

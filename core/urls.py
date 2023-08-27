@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
     path("", views.index, name="index"),
     path("treasure/", views.treasure, name="treasure"),
+    path("di/", views.di, name="di"),
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/profile/", views.profile, name="profile"),
     path("accounts/portifolio_user_form/", views.portifolio_user_form, name="portifolio_user_form"),

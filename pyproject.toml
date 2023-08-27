@@ -10,7 +10,6 @@ readme = "README.md"
 python = "^3.11"
 yfinance = "^0.2.20"
 psycopg2-binary = "^2.9.6"
-pandas = "^2.0.2"
 fontawesomefree = "^6.4.0"
 django-admin-rangefilter = "^0.10.0"
 investpy = "^1.0.8"
@@ -35,10 +34,13 @@ pre-commit = "^3.3.3"
 seaborn = "^0.12.2"
 mplfinance = "^0.12.9b7"
 ta = "^0.10.2"
+pyettj = "^0.3.0"
+pandas = "1.5.3"
+django-stubs-ext = "^4.2.2"
 
 
 [tool.poetry.group.dev.dependencies]
-black = {extras = ["jupyter"], version = "^22.3.0"}
+black = { extras = ["jupyter"], version = "^22.3.0" }
 djlint = "^1.30.2"
 ipython = "8.0.0"
 pip = "^23.1.2"
@@ -63,6 +65,12 @@ pynvim = "^0.4.3"
 pgcli = "^3.5.0"
 ptpython = "^3.0.23"
 bpython = "^0.24"
+debugpy = "^1.6.7.post1"
+django-stubs = "^4.2.3"
+django-stubs-ext = "^4.2.2"
+mypy = "^1.5.1"
+types-requests = "^2.31.0.2"
+types-six = "^1.16.21.9"
 
 
 [build-system]
@@ -76,9 +84,7 @@ DJANGO_SETTINGS_MODULE = "quantitativeTrading.settings"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
 minversion = "7.1.2"
 addopts = "-ra -q"
-testpaths = [
-    "."
-]
+testpaths = ["."]
 filterwarnings = "ignore"
 
 # isort.toml
@@ -115,11 +121,11 @@ venvPath = "."
 venv = ".venv"
 
 [tool.pylint.MASTER]
-init-hook='import sys; sys.path.append(".")'
-ignore="templates, static"
+init-hook = 'import sys; sys.path.append(".")'
+ignore = "templates, static"
 django-settings-module = "quantitativeTrading.settings"
-load-plugins="pylint_django"
-suggestion-mode="yes"
+load-plugins = "pylint_django"
+suggestion-mode = "yes"
 
 [tool.pylint.messages_control]
 max-line-length = 120
@@ -132,23 +138,31 @@ disable = [
   "ungrouped-imports",
   "wrong-import-position",
   "wrong-import-order",
-  "expression-not-assigned"
+  "expression-not-assigned",
 ]
 
 [tool.pylint.format]
 max-line-length = 120
 
 [tool.pylint.DESIGN]
-max-parents=13
-output-format="colorized"
+max-parents = 13
+output-format = "colorized"
 
 [tool.pylint.TYPECHECK]
-generated-members="pandas.*" #REQUEST,acl_users,aq_parent,
+generated-members = "pandas.*" #REQUEST,acl_users,aq_parent,
 
 [tool.black]
 line-length = 120
 target_version = ['py310']
 
 [tool.djlint]
-profile="django"
+profile = "django"
 ignore = "H006,H031"
+
+[tool.pyright.MASTER]
+venvPath = "."
+venv = ".venv"
+strict = true
+
+[tool.django-stubs]
+django_settings_module = "quantitativetrading.settings"

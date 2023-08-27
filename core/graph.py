@@ -191,7 +191,6 @@ def showimageIpcaWeekly():
     df.drop("data_vencimento", axis=1, inplace=True)
     df.dropna(inplace=True)
     df = df.loc[date(year=date.today().year, month=date.today().month, day=date.today().day - date.today().weekday()) :]
-
     df = (df / df.iloc[0]) * 1
     sns.lineplot(data=df, linewidth=2, dashes=False)
     plt.legend(ncol=2, loc="upper left")

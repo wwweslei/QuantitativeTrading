@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from finance.research import direct_treasure, etf, fii, index_b3, sgs, stock
+from finance.research import di, direct_treasure, etf, fii, index_b3, sgs, stock
 
 
 class Command(BaseCommand):
@@ -34,6 +34,9 @@ class Command(BaseCommand):
         elif cod == "sgs":
             self.stdout.write(self.style.SUCCESS("Saving sgs data"))
             sgs.save()
+        elif cod == "di":
+            self.stdout.write(self.style.SUCCESS("Saving di data"))
+            di.save()
         elif cod == "all":
             self.stdout.write(self.style.SUCCESS("Saving all data"))
             etf.save()

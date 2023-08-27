@@ -45,6 +45,50 @@ class Aall34(models.Model):
         db_table = "AALL34"
 
 
+class EttjDay(models.Model):
+    days = models.IntegerField(primary_key=True)
+    date = models.DateField(blank=True, null=True)
+    pre_252 = models.FloatField(blank=True, null=True)
+    pre_360 = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = "ettj_day"
+
+
+class EttjMonth(models.Model):
+    days = models.IntegerField(primary_key=True)
+    date = models.DateField(blank=True, null=True)
+    pre_252 = models.FloatField(blank=True, null=True)
+    pre_360 = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = "ettj_month"
+
+
+class EttjWeek(models.Model):
+    days = models.IntegerField(primary_key=True)
+    date = models.DateField(blank=True, null=True)
+    pre_252 = models.FloatField(blank=True, null=True)
+    pre_360 = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = "ettj_week"
+
+
+class LastEttj(models.Model):
+    days = models.IntegerField(primary_key=True)
+    date = models.DateField(blank=True, null=True)
+    pre_252 = models.FloatField(blank=True, null=True)
+    pre_360 = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = "last_ettj"
+
+
 class Aalr3(models.Model):
     date = models.DateTimeField(primary_key=True)
     open = models.FloatField(blank=True, null=True)
@@ -4593,15 +4637,9 @@ class EtfList(models.Model):
     razão_social = models.TextField(
         db_column="Razão Social", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    fundo = models.TextField(
-        db_column="Fundo", blank=True, null=True
-    )  # Field name made lowercase.
-    segmento = models.FloatField(
-        db_column="Segmento", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
+    fundo = models.TextField(db_column="Fundo", blank=True, null=True)  # Field name made lowercase.
+    segmento = models.FloatField(db_column="Segmento", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -6463,18 +6501,10 @@ class Ibmb34(models.Model):
 
 
 class Ibov(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -6491,18 +6521,10 @@ class Ibov(models.Model):
 
 
 class Ibra(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -6519,18 +6541,10 @@ class Ibra(models.Model):
 
 
 class Ibxl(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -6547,18 +6561,10 @@ class Ibxl(models.Model):
 
 
 class Ibxx(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -6575,18 +6581,10 @@ class Ibxx(models.Model):
 
 
 class Ico2(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -6603,18 +6601,10 @@ class Ico2(models.Model):
 
 
 class Icon(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -6631,18 +6621,10 @@ class Icon(models.Model):
 
 
 class Idiv(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -6723,18 +6705,10 @@ class Idvl9(models.Model):
 
 
 class Ieex(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -6751,18 +6725,10 @@ class Ieex(models.Model):
 
 
 class Ifil(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -6779,18 +6745,10 @@ class Ifil(models.Model):
 
 
 class Ifix(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -6807,18 +6765,10 @@ class Ifix(models.Model):
 
 
 class Ifnc(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -6852,18 +6802,10 @@ class Igbr3(models.Model):
 
 
 class Igct(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -6880,18 +6822,10 @@ class Igct(models.Model):
 
 
 class Igcx(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -6908,18 +6842,10 @@ class Igcx(models.Model):
 
 
 class Ignm(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -6961,18 +6887,10 @@ class Igta3(models.Model):
 
 
 class Imat(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -6989,18 +6907,10 @@ class Imat(models.Model):
 
 
 class Imob(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -7035,18 +6945,10 @@ class Industria(models.Model):
 
 
 class Indx(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -7158,18 +7060,10 @@ class Irdm11(models.Model):
 
 
 class Itag(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -7287,18 +7181,10 @@ class Itub4(models.Model):
 
 
 class Ivbx(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -8464,18 +8350,10 @@ class Mils3(models.Model):
 
 
 class Mlcx(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -11381,18 +11259,10 @@ class Smal11(models.Model):
 
 
 class Smll(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -13043,18 +12913,10 @@ class Utec34(models.Model):
 
 
 class Util(models.Model):
-    setor = models.TextField(
-        db_column="Setor", blank=True, null=True
-    )  # Field name made lowercase.
-    código = models.TextField(
-        db_column="Código", primary_key=True
-    )  # Field name made lowercase.
-    ação = models.TextField(
-        db_column="Ação", blank=True, null=True
-    )  # Field name made lowercase.
-    tipo = models.TextField(
-        db_column="Tipo", blank=True, null=True
-    )  # Field name made lowercase.
+    setor = models.TextField(db_column="Setor", blank=True, null=True)  # Field name made lowercase.
+    código = models.TextField(db_column="Código", primary_key=True)  # Field name made lowercase.
+    ação = models.TextField(db_column="Ação", blank=True, null=True)  # Field name made lowercase.
+    tipo = models.TextField(db_column="Tipo", blank=True, null=True)  # Field name made lowercase.
     qtde_teórica = models.BigIntegerField(
         db_column="Qtde. Teórica", blank=True, null=True
     )  # Field name made lowercase. Field renamed to remove unsuitable characters.
