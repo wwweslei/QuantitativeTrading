@@ -108,7 +108,7 @@ def save_image_histogram():
     df_day = pd.DataFrame.from_records(day.values())
     df_last_day = pd.DataFrame.from_records(last_day.values())
     df_day = df_day.append(df_last_day)
-    sns.histplot(data=df_day, x="pre_252", bins="50", kde=True)
+    sns.histplot(data=df_day, x="pre_252", bins=50, kde=True)
     plt.title("histogram")
     plt.savefig("core/static/core/img/ettj_histogram.svg", format="svg", bbox_inches="tight")
     plt.close()
