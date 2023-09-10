@@ -73,6 +73,7 @@ mypy = "^1.5.1"
 types-requests = "^2.31.0.2"
 types-six = "^1.16.21.9"
 ruff = "^0.0.286"
+bandit = "^1.7.5"
 
 
 [build-system]

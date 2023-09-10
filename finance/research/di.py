@@ -29,6 +29,10 @@ def last_day_working(_date):
     return working_day(_date)
 
 
+# FIX: This function is not working properly.
+# day is out of range for month in day 1
+
+
 def first_day_of_week(_date):
     """Return the first day of the week of the date passed as argument."""
     _date = _date - relativedelta(day=_date.day - _date.weekday())

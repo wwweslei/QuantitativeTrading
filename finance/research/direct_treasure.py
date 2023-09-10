@@ -18,9 +18,7 @@ def treasury():
 def treasure_sales_search():
     url = "https://www.tesourotransparente.gov.br/ckan/dataset/f0468ecc-ae97-4287-89c2-6d8139fb4343/resource/e5f90e3a-8f8d-4895-9c56-4bb2f7877920/download/VendasTesouroDireto.csv"
     df = pd.read_csv(url, sep=";", decimal=",")
-    df["Vencimento do Titulo"] = pd.to_datetime(
-        df["Vencimento do Titulo"], dayfirst=True
-    )
+    df["Vencimento do Titulo"] = pd.to_datetime(df["Vencimento do Titulo"], dayfirst=True)
     df["Data Venda"] = pd.to_datetime(df["Data Venda"], dayfirst=True)
     multi_indice = pd.MultiIndex.from_frame(df.iloc[:, :3])
     df = df.set_index(multi_indice).iloc[:, 3:]
@@ -30,9 +28,7 @@ def treasure_sales_search():
 def treasure_repurchase_search():
     url = "https://www.tesourotransparente.gov.br/ckan/dataset/f30db6e4-6123-416c-b094-be8dfc823601/resource/30c2b3f5-6edd-499a-8514-062bfda0f61a/download/RecomprasTesouroDireto.csv"
     df = pd.read_csv(url, sep=";", decimal=",")
-    df["Vencimento do Titulo"] = pd.to_datetime(
-        df["Vencimento do Titulo"], dayfirst=True
-    )
+    df["Vencimento do Titulo"] = pd.to_datetime(df["Vencimento do Titulo"], dayfirst=True)
     df["Data Resgate"] = pd.to_datetime(df["Data Resgate"], dayfirst=True)
     multi_indice = pd.MultiIndex.from_frame(df.iloc[:, :3])
     df = df.set_index(multi_indice).iloc[:, 3:]
@@ -41,19 +37,12 @@ def treasure_repurchase_search():
 
 def save():
     all_treasury = treasury()
-    treasury_types = (
-        all_treasury.index.droplevel(level=1)
-        .droplevel(level=1)
-        .drop_duplicates()
-        .to_list()
-    )
+    treasury_types = all_treasury.index.droplevel(level=1).droplevel(level=1).drop_duplicates().to_list()
     for treasury_type in treasury_types:
         unique_treasury = all_treasury.loc[(treasury_type)].reset_index()
         unique_treasury["Data Base"] = unique_treasury["Data Base"].dt.date
         unique_treasury["Data Vencimento"] = unique_treasury["Data Vencimento"].dt.date
-        unique_treasury.to_sql(
-            treasury_type, get_connection(), if_exists="replace", index=False
-        )
+        unique_treasury.to_sql(treasury_type, get_connection(), if_exists="replace", index=False)
         print("Update", treasury_type)
 
 
