@@ -29,6 +29,7 @@ handler403 = "core.error_views.handler403"
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("core.urls")),
+    path("", include("finance.urls")),
 ]
 
 if settings.DEBUG:

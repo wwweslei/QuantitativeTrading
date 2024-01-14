@@ -5,9 +5,9 @@ services:
     container_name: postgres_container
     image: postgres
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-fdjk}
-      PGDATA: /data/postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=quantitativeTrading
+      - POSTGRES_PASSWORD=fdjk
     volumes:
        - postgres:/data/postgres
     ports:
@@ -20,8 +20,8 @@ services:
     container_name: pgadmin_container
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-fdjk}
+      PGADMIN_DEFAULT_EMAIL: www.weslei@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: fdjk
       PGADMIN_CONFIG_SERVER_MODE: 'False'
     volumes:
        - pgadmin:/var/lib/pgadmin
