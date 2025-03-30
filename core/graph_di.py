@@ -1,4 +1,4 @@
-import locale
+# import locale
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -8,7 +8,7 @@ from finance.models import EttjDay, EttjMonth, EttjWeek, LastEttj
 
 sns.set_theme(style="darkgrid", palette="muted", font_scale=1)
 
-locale.setlocale(locale.LC_ALL, "pt_BR.UTF-8")
+# locale.setlocale(locale.LC_ALL, "pt_BR.UTF-8")
 
 
 def graph_di():

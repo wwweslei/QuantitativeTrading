@@ -1,4 +1,4 @@
-import locale
+# import locale
 from datetime import date, datetime
 from multiprocessing import Process
 
@@ -12,7 +12,7 @@ from finance.models import TesouroIpca, TesouroPrefixado, TesouroSelic
 
 matplotlib.use("svg")
 sns.set_theme(style="whitegrid", palette="muted", font_scale=1)
-locale.setlocale(locale.LC_ALL, "pt_BR.UTF-8")
+# locale.setlocale(locale.LC_ALL, "pt_BR.UTF-8")
 
 
 def treasure_graph():

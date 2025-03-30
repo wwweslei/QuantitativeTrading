@@ -31,7 +31,7 @@ def last_day_working(_date):
 
 def first_day_of_week(_date):
     """Return the first day of the week of the date passed as argument."""
-    _date = _date - relativedelta(day=_date.day - _date.weekday())
+    _date = _date - relativedelta(days=_date.day - _date.weekday())
     return _date
 
 
@@ -56,5 +56,5 @@ def save():
         (first_day_of_week(today), "ettj_week"),
         (fist_day_of_month(today), "ettj_month"),
     ]
-    with Pool(4) as p:
+    with Pool(2) as p:
         p.starmap(get_ettj, args)

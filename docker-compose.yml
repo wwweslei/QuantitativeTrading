@@ -1,20 +1,31 @@
-version: '3.5'
+version: "3.5"
 
 services:
+  web:
+    image: web
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    environment:
+      - DATABASE_HOST=postgres
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+
   postgres:
     container_name: postgres_container
     image: postgres
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=quantitativeTrading
-      - POSTGRES_PASSWORD=fdjk
+    env_file:
+      - .env
+
     volumes:
-       - postgres:/data/postgres
+      - postgres:/data/postgres
     ports:
       - "5432:5432"
-    networks:
-      - postgres
-    restart: unless-stopped
 
   pgadmin:
     container_name: pgadmin_container
@@ -22,9 +33,11 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: www.weslei@gmail.com
       PGADMIN_DEFAULT_PASSWORD: fdjk
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    env_file:
+      - .env
     volumes:
-       - pgadmin:/var/lib/pgadmin
+      - pgadmin:/var/lib/pgadmin
 
     ports:
       - "${PGADMIN_PORT:-5050}:80"
@@ -37,5 +50,5 @@ networks:
     driver: bridge
 
 volumes:
-    postgres:
-    pgadmin:
+  postgres:
+  pgadmin:
