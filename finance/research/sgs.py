@@ -49,9 +49,7 @@ tickers = {
 
 
 def consulta_bc(codigo_bcb, name):
-    url = (
-        f"http://api.bcb.gov.br/dados/serie/bcdata.sgs.{codigo_bcb}/dados?formato=json"
-    )
+    url = f"http://api.bcb.gov.br/dados/serie/bcdata.sgs.{codigo_bcb}/dados?formato=json"
     df = pd.read_json(url)
     df["data"] = pd.to_datetime(df["data"], dayfirst=True).dt.date
     df.set_index("data", inplace=True)

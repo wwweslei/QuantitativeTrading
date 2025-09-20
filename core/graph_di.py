@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
-from finance.models import EttjDay, EttjMonth, EttjWeek, LastEttj
+from finance.models import EttjDay, EttjMonth, EttjWeek, Ipca, LastEttj
 
 sns.set_theme(style="darkgrid", palette="muted", font_scale=1)
 
@@ -18,6 +18,7 @@ def graph_di():
     save_image_ettj_week()
     save_image_histogram()
     save_image_ettj_day_360()
+    save_image_ipca()
 
 
 def save_image_ettj_day_360():
@@ -111,4 +112,15 @@ def save_image_histogram():
     sns.histplot(data=df_day, x="pre_252", bins=50, kde=True)
     plt.title("histogram")
     plt.savefig("core/static/core/img/ettj_histogram.svg", format="svg", bbox_inches="tight")
+    plt.close()
+
+
+def save_image_ipca():
+    ipca = Ipca.objects.all()
+    df = pd.DataFrame.from_records(ipca.values())
+    sns.lineplot(data=df, x="data", y="valor", linewidth=2)
+    plt.title("IPCA - Índice Nacional de Preços ao Consumidor Amplo")
+    plt.ylabel("Variação %")
+    plt.xlabel("")
+    plt.savefig("core/static/core/img/ipca.svg", format="svg", bbox_inches="tight")
     plt.close()

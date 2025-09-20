@@ -44,17 +44,22 @@ def fist_day_of_month(_date):
 def get_ettj(_date, name):
     """Return ettj dataframe."""
     _date = _date.strftime("%d-%m-%Y")
-    df = ettj.get_ettj(_date)[["DI x pré 252", "DI x pré 360", "Dias Corridos", "Data"]]
-    df.columns = ["pre_252", "pre_360", "days", "date"]
-    df.to_sql(name, get_connection(), if_exists="replace", index=True)
+    print(ettj.get_ettj(_date))
+    # df = ettj.get_ettj(_date)[["DI x pré 252", "DI x pré 360", "Dias Corridos", "Data"]]
+    # df.columns = ["pre_252", "pre_360", "days", "date"]
+    # df.to_sql(name, get_connection(), if_exists="replace", index=True)
+
+
+# def save():
+#     args = [
+#         (working_day(today), "ettj_day"),
+#         (last_day_working(today), "last_ettj"),
+#         (first_day_of_week(today), "ettj_week"),
+#         (fist_day_of_month(today), "ettj_month"),
+#     ]
+#     with Pool(1) as p:
+#         p.starmap(get_ettj, args)
 
 
 def save():
-    args = [
-        (working_day(today), "ettj_day"),
-        (last_day_working(today), "last_ettj"),
-        (first_day_of_week(today), "ettj_week"),
-        (fist_day_of_month(today), "ettj_month"),
-    ]
-    with Pool(2) as p:
-        p.starmap(get_ettj, args)
+    get_ettj(working_day(today), "ettj_day")
